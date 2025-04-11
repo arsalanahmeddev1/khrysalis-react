@@ -1,0 +1,98 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"); */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  /* font-family: "Poppins", sans-serif; */
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+}
+
+/* For webkit-based browsers */
+/* Track */
+::-webkit-scrollbar {
+  width: 12px;
+  /* Set the width of the scrollbar */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: #5213aa;
+  /* Set the color of the scrollbar handle */
+  border-radius: 6px;
+  /* Set the border radius of the scrollbar handle */
+}
+
+::-webkit-scrollbar {
+  background-color: #000;
+}
+
+.ant-collapse-content-box {
+  background-color: #000;
+}
+
+.hideScroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Customizing Copyright Tabs */
+
+.copyright-tabs-container div[role="tablist"] {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  border: none;
+  justify-content: start;
+  align-items: start;
+}
+
+.copyright-tabs-container button[role="tab"] {
+  all: unset;
+  padding: 4px 0px 4px 0px;
+  cursor: pointer;
+  display: block;
+  /* width: 100%; */
+}
+.copyright-tabs-container button[aria-selected="true"] {
+  border-bottom: 1px solid white;
+}
+
+.copyright-tabs-container div[role="tabpanel"] {
+  padding: 0px;
+  padding-left: 10px;
+}
+
+.copyright-vertical-tabs + div {
+  max-width: 700px;
+}
+
+/* LOADER START */
+.loading_page {
+  position: fixed;
+  height: 100vh;
+  background: #000;
+  width: 100%;
+  z-index: 999;
+  transition: 0.5s;
+}
+
+.loading_page .inner_loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.5s;
+}
+
+.loading_page .loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: fixed;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  width: 100%;
+}
+/* LOADER END */

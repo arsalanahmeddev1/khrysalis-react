@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  div[role="tab"] {
+    @apply text-white;
+  }
+}
+
+@layer components {
+  /* Custom Slick Arrow Positioning */
+.slick-list {
+  margin: 0 -10px;
+}
+
+.slick-slide > div {
+  padding: 0 10px;
+}
+
+/* Hide default arrows */
+.slick-prev:before, 
+.slick-next:before {
+  display: none;
+}
+
+/* Custom arrow container positioning */
+.slick-prev {
+  left: -15px;
+}
+
+.slick-next {
+  right: -15px;
+}
+
+@media (max-width: 768px) {
+  .slick-prev {
+    left: -10px;
+  }
+  .slick-next {
+    right: -10px;
+  }
+}
+}

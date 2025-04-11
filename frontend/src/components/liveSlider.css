@@ -1,0 +1,37 @@
+.live-slider #app {
+    height: 100%
+}
+
+html,
+/* body {
+  position: relative;
+  height: 100%;
+} */
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.live-slider .swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.live-slider .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+}
+
+.live-slider .swiper-slide img {
+    display: block;
+    width: 100%;
+}
+
+.live-slider .swiper-wrapper{
+    height: 200px;
+    /* overflow: hidden; */
+}
