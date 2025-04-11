@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import MyContext from '../router/context'
 import { useContext } from 'react'
 import { useState, useEffect } from 'react'
-import SkeletonLoader from './SkeletonLoader'
-
 // For Dark Mode mode Icons
 import home from '../assets/icons/home.png'
 import blips from '../assets/icons/blips.png'
@@ -46,33 +44,8 @@ const Dashboard = ({ isSettingDashboard }) => {
         return () => clearTimeout(timer)
     }, [])
 
-    const skeletonConfig = {
-        baseColor: '#1F2937', // Dark gray for dark mode
-        highlightColor: '#374151', // Lighter gray
-        duration: 1.5
-      };
-    
-
-      const SkeletonItem = ({ withIcon = true }) => (
-        <div className="flex items-center py-[6px]">
-          {withIcon && (
-            <Skeleton 
-              circle 
-              width={16} 
-              height={16} 
-              className="mr-2" 
-              {...skeletonConfig}
-            />
-          )}
-          <Skeleton 
-            width={Math.random() * 60 + 80} 
-            height={14} 
-            {...skeletonConfig} 
-          />
-        </div>
-      );
-
    
+    
 
 
     const items = [
@@ -183,25 +156,8 @@ const Dashboard = ({ isSettingDashboard }) => {
 
     return (
         <div className="flex flex-col w-[12%] fixed h-[90vh] pt-4 top-[60px] px-6">
-            {isLoading ? (
-                <>
-                    {/* Main Items Skeleton */}
-                    <div className="space-y-1">
-                        {[...Array(10)].map((_, i) => (
-                            <SkeletonItem key={`main-${i}`} withIcon={!isSettingDashboard} />
-                        ))}
-                    </div>
-
-                    {/* Secondary Items Skeleton */}
-                    {!isSettingDashboard && (
-                        <div className="mt-6 space-y-1">
-                            {[...Array(4)].map((_, i) => (
-                                <SkeletonItem key={`secondary-${i}`} withIcon />
-                            ))}
-                        </div>
-                    )}
-                </>
-            ) : !isSettingDashboard ? (
+            
+            {!isSettingDashboard ? (
                 items?.map((group, index) => (
                     <div key={`group-${index}`} className={`text-white-false ${index === 1 && 'mt-6'}`}>
                         {group?.map((item) => (

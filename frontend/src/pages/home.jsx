@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import Header from "../components/header";
 import blipsIcon from "../assets/icons/blips.png";
@@ -12,12 +12,13 @@ import LiveSlider from "../components/liveslider";
 import SlidersBlips from "../components/slidersBlips";
 import CustomSlider from "../components/sliders";
 import { blipLinks, recommendedLinks } from "../components/videoLinks";
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CustomArrow from "../components/CustomArrow";
-
+import { Skeleton } from 'antd';
 const HomePage = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [loading, setLoading] = useState(true);
   const categories = [
     "All", "Trending", "Live", "Gaming", "Music", "Travel",
     "Sports", "Animation", "Gameplay", "Streaming", "Camping", "Cast",
@@ -25,16 +26,16 @@ const HomePage = () => {
 
   const settings = {
     dots: false,
-    infinite: false, 
+    infinite: false,
     speed: 500,
     slidesToShow: 8,
     slidesToScroll: 2,
-    autoplay: false,   
-    autoplaySpeed: 2000, 
-    arrows: true,  
+    autoplay: false,
+    autoplaySpeed: 2000,
+    arrows: true,
     prevArrow: <CustomArrow direction="prev" darkMode={isDarkMode} />,
     nextArrow: <CustomArrow direction="next" darkMode={isDarkMode} />,
-    
+
     responsive: [
       {
         breakpoint: 1024,
@@ -59,7 +60,14 @@ const HomePage = () => {
       },
     ],
   };
-  
+
+
+  useEffect(() => {
+    // Simulating a delay to show the skeleton loader
+    setTimeout(() => {
+      setLoading(false); // Set loading to false after 2 seconds
+    }, 2000);
+  }, []);
 
   return (
     <div className="bg-black-false pb-20">
@@ -76,61 +84,72 @@ const HomePage = () => {
               </div>
 
               <Slider {...settings} className="text-white mt-4 options-slider">
-                {categories.map((item, index) => (
-                  <div key={index} className=" text-center px-2">
-                    <div className="category-item cursor-pointer bg-gray-700 rounded text-xs md:text-sm lg:text-base 
- px-0 md:px-0 lg:px-0 py-1 md:py-1 lg:py-1 text-center">{item}</div>
-                  </div>
-                ))}
+                {loading ? (
+                  Array(8)
+                    .fill()
+                    .map((_, index) => (
+                      <div key={index} className="text-center px-2">
+                        <div className="category-item cursor-pointer bg-gray-700 h-[32px] rounded text-xs md:text-sm lg:text-base 
+                 px-0 md:px-0 lg:px-0 py-1 md:py-1 lg:py-1 text-center animate-pulse bg-gray-600" />
+                      </div>
+                    ))
+                ) : (
+                  categories.map((item, index) => (
+                    <div key={index} className="text-center px-2">
+                      <div className="category-item cursor-pointer bg-gray-700 rounded text-xs md:text-sm lg:text-base 
+               px-0 md:px-0 lg:px-0 py-1 md:py-1 lg:py-1 text-center">{item}</div>
+                    </div>
+                  ))
+                )}
               </Slider>
 
-                  <div className="flex flex-col md:flex-row md:max-h-[333px] mt-3 gap-3">
-      {/* Large Video */}
-      <div className="md:w-[55%] w-full relative">
-        <img src={video1} className="h-full w-full object-cover rounded-lg" alt="videos" />
-        <span className="absolute text-white right-2 top-2 bg-gray-800 px-2 py-1 rounded-lg text-sm">
-          {"3"}
-        </span>
-        <div className="  mt-2 text-white">
-          {/* <p className="font-semibold">{"Tittle"}</p> */}
-          <div className="flex items-center gap-x-2 mt-2">
-            <img src={video2} className="h-16 w-16 rounded-full" alt="Profile" />
-            <span className="text-sm">{"mk"}</span>
-          </div>
-        </div>
-      </div>
+              <div className="flex flex-col md:flex-row md:max-h-[333px] mt-3 gap-3">
+                {/* Large Video */}
+                <div className="md:w-[55%] w-full relative">
+                  <img src={video1} className="h-full w-full object-cover rounded-lg" alt="videos" />
+                  <span className="absolute text-white right-2 top-2 bg-gray-800 px-2 py-1 rounded-lg text-sm">
+                    {"3"}
+                  </span>
+                  <div className="  mt-2 text-white">
+                    {/* <p className="font-semibold">{"Tittle"}</p> */}
+                    <div className="flex items-center gap-x-2 mt-2">
+                      <img src={video2} className="h-16 w-16 rounded-full" alt="Profile" />
+                      <span className="text-sm">{"mk"}</span>
+                    </div>
+                  </div>
+                </div>
 
-      {/* Smaller Videos */}
-      <div className="md:w-[45%] w-full flex flex-col gap-3">
-        <div className="relative">
-          <img src={video2} className="h-full w-full object-cover rounded-lg" alt="video2" />
-          <span className="absolute text-white right-2 top-2 bg-gray-800 px-2 py-1 rounded-lg text-sm">
-            {"4"}
-          </span>
-          <div className="absolute bottom-4 left-4 text-white">
-            <p className="font-semibold">{"Gaming"}</p>
-            <div className="flex items-center gap-x-2 mt-1">
-              <img src={video3} className="h-6 w-6 rounded-full" alt="Profile" />
-              <span className="text-sm">{"Author Three"}</span>
-            </div>
-          </div>
-        </div>
-        <div className="flex gap-3">
-          <div className="w-1/2 relative">
-            <img src={video3} className="h-full w-full object-cover rounded-lg" alt="video"/>
-            <span className="absolute text-white right-2 top-2 bg-gray-800 px-2 py-1 rounded-lg text-sm">
-              {3}
-            </span>
-          </div>
-          <div className="w-1/2 relative">
-            <img src={video4} className="h-full w-full object-cover rounded-lg" alt="mkmk" />
-            <span className="absolute text-white right-2 top-2 bg-gray-800 px-2 py-1 rounded-lg text-sm">
-              4
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
+                {/* Smaller Videos */}
+                <div className="md:w-[45%] w-full flex flex-col gap-3">
+                  <div className="relative">
+                    <img src={video2} className="h-full w-full object-cover rounded-lg" alt="video2" />
+                    <span className="absolute text-white right-2 top-2 bg-gray-800 px-2 py-1 rounded-lg text-sm">
+                      {"4"}
+                    </span>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <p className="font-semibold">{"Gaming"}</p>
+                      <div className="flex items-center gap-x-2 mt-1">
+                        <img src={video3} className="h-6 w-6 rounded-full" alt="Profile" />
+                        <span className="text-sm">{"Author Three"}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <div className="w-1/2 relative">
+                      <img src={video3} className="h-full w-full object-cover rounded-lg" alt="video" />
+                      <span className="absolute text-white right-2 top-2 bg-gray-800 px-2 py-1 rounded-lg text-sm">
+                        {3}
+                      </span>
+                    </div>
+                    <div className="w-1/2 relative">
+                      <img src={video4} className="h-full w-full object-cover rounded-lg" alt="mkmk" />
+                      <span className="absolute text-white right-2 top-2 bg-gray-800 px-2 py-1 rounded-lg text-sm">
+                        4
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <div className="mt-32">
                 <h1 className="font-semibold border-b-2 text-white-false relative top-[1px] w-fit border-blue-600 z-10">Live</h1>
