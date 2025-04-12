@@ -1,6 +1,5 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import MyContext from "../router/context";
 import { useGetUserQuery } from "../redux/features/auth";
 import { CiBrightnessUp } from "react-icons/ci";
 import { MdDarkMode } from "react-icons/md";
@@ -13,23 +12,32 @@ import profile from "../assets/icons/profile.png";
 
 const Header = () => {
   const { isSuccess, isFetching } = useGetUserQuery();
-  const { data, updateData } = useContext(MyContext);
-  const [isDarkMode, setIsDarkMode] = useState(data.isDarkMode);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    setIsDarkMode(data?.isDarkMode);
-    document.body.style.backgroundColor = data?.isDarkMode ? "#000" : "#fff";
-    document.body.style.color = data?.isDarkMode ? "#fff" : "#000";
-  }, [data.isDarkMode]);
+    // Initialize from localStorage if available
+    const storedTheme = localStorage.getItem("theme");
+    const prefersDark = storedTheme === "dark" || (!storedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    if (prefersDark) {
+      document.documentElement.classList.add("dark");
+      setIsDarkMode(true);
+    }
+  }, []);
+
+  const toggleDarkMode = () => {
+    const isDark = document.documentElement.classList.toggle("dark");
+    setIsDarkMode(isDark);
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  };
 
   return (
     <header>
       <div
         className={`flex border-b ${
           isDarkMode
-          ? "bg-[#000] border-b border-white" 
-          : "bg-[#fff] border-b-2 border-gray-300"
+            ? "bg-[#000] border-white"
+            : "bg-[#fff] border-gray-300"
         } justify-between items-center py-2 px-2 md:px-8 fixed w-full z-50`}
       >
         <Link to={"/"} className="text-white-false">
@@ -38,12 +46,11 @@ const Header = () => {
 
         {/* Search Bar - Only Visible on Large Screens */}
         <div className="hidden lg:flex grow">
-          <div className="border w-full max-w-[400px] mx-auto h-[36px]  flex justify-between rounded-full bg-transparent">
+          <div className="border w-full max-w-[400px] mx-auto h-[36px] flex justify-between rounded-full bg-transparent">
             <input
               type="text"
               placeholder="Search Here..."
-              className="pl-4 w-full bg-transparent focus:border-0 focus:outline-none focus:ring-0 placeholder:text-teal-500 text-teal-400 w-full border-none"
-
+              className="pl-4 w-full bg-transparent focus:outline-none placeholder:text-teal-500 text-teal-400"
             />
             <button className="bg-violet-700 w-[67px] h-full rounded-full flex justify-center items-center">
               <img src={searchIcon} alt="Search" className="w-[16px]" />
@@ -62,11 +69,16 @@ const Header = () => {
             </Link>
           )}
 
-          <button onClick={() => updateData({ isDarkMode: !isDarkMode })}>
-            {isDarkMode ? <CiBrightnessUp color="#fff" size={32} /> : <MdDarkMode color="#000" size={32} />}
+          {/* Dark Mode Toggle */}
+          <button onClick={toggleDarkMode}>
+            {isDarkMode ? (
+              <CiBrightnessUp color="#fff" size={32} />
+            ) : (
+              <MdDarkMode color="#000" size={32} />
+            )}
           </button>
 
-          {/* Hamburger Menu for Mobile (Only Visible on Small Screens) */}
+          {/* Hamburger Menu for Mobile */}
           <button
             className="xl:hidden text-white-false text-2xl"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -75,11 +87,6 @@ const Header = () => {
           </button>
         </div>
       </div>
-
-   
-      {/* <div classN ame="hidden xl:block">
-        <Dashboard />
-      </div> */}
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
