@@ -24,7 +24,7 @@ export default function Slider(props) {
   }, [props.data]);
 
   if (!videos?.video || videos.video.length === 0) {
-    return <div>No videos available</div>;
+    return <div className="text-black dark:text-white">No videos available</div>;
   }
 
   

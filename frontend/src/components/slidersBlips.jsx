@@ -1,6 +1,8 @@
-
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 import { HiOutlineUser } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import playIcon from "../assets/icons/play.png";
@@ -14,10 +16,21 @@ import "swiper/css/pagination";
 
 export default function Slider(props) {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setData(props?.data);
+    const timer = setTimeout(() => {
+      setLoading(false);
+      if (props?.data && props.data.length > 0) {
+        setData(props.data);
+      }
+    }, 200000);
+
+    return () => clearTimeout(timer);
   }, [props.data]);
+
+
+  const skeletonSlides = Array(4).fill(0);
 
   return (
     <>
@@ -26,8 +39,45 @@ export default function Slider(props) {
         spaceBetween={30}
         className="mySwiper relative !w-full flex justify-start mt-4"
       >
-        {data?.map((val, index) => {
-          return (
+        {loading
+          ? skeletonSlides.map((_, index) => (
+            <SwiperSlide key={index} className="!bg-transparent relative">
+              <div className="flex flex-col gap-y-2">
+                <Skeleton
+                  className={`${props.blips ? "w-full max-w-[332px] h-[450px]" : "w-full max-w-[232px] h-[135px]"}`}
+                  borderRadius={12}
+                />
+                {!props?.blips && (
+                  <div className="flex flex-col gap-y-1">
+                    
+                    <Skeleton
+                    className={"w-full max-w-[372px] h-[16px]"}
+                    />
+                    {props?.details && (
+                      <>
+                        <Skeleton
+                        className={"w-full max-w-[372px] h-[16px]"}
+                        />
+                        <Skeleton className={"w-full max-w-[372px] h-[16px]"} />
+                      </>
+                    )}
+                  </div>
+                )}
+                {props?.blips && (
+                  <div className="flex items-start gap-x-2">
+                    <Skeleton circle height={48} width={48} />
+                    <div className="flex flex-col gap-y-1">
+                      <Skeleton width={150} height={16}
+                       />
+                      <Skeleton width={100} height={14} />
+                      <Skeleton width={80} height={14} />
+                    </div>
+                  </div>
+                )}
+              </div>
+            </SwiperSlide>
+          ))
+          : data?.map((val, index) => (
             <SwiperSlide className="!bg-transparent relative" key={index}>
               <a href={val?.link} className="flex flex-col gap-y-1">
                 <div className="relative">
@@ -41,7 +91,7 @@ export default function Slider(props) {
                       <span className="bg-black-false text-white-false block rounded-full float-right py-1 px-3 text-xs mr-3 mt-3">
                         {val?.duration}
                       </span>
-                      <div className="absolute bottom-2 flex flex-col ml-3    ">
+                      <div className="absolute bottom-2 flex flex-col ml-3">
                         <span className="bg-black-false w-fit text-white-false block rounded-full float-right py-1 px-3 text-xs mr-3 mt-3">
                           {val?.category}
                         </span>
@@ -57,18 +107,17 @@ export default function Slider(props) {
                   )}
                   <img
                     src={val?.img}
-                    className={` ${
-                      props.blips
-                        ? "!w-[270px] !h-[450px] !shadow-xl z-0 drop-shadow-2xl opacity-80"
-                        : "!w-[232px] !h-[135px]"
-                    } !w-[332px] !h-[190px] rounded-lg`}
+                    className={` ${props.blips
+                      ? "!w-[270px] !h-[450px] !shadow-xl z-0 drop-shadow-2xl opacity-80"
+                      : "!w-[232px] !h-[135px]"
+                      } !w-[332px] !h-[190px] rounded-lg`}
                     alt=""
                   />
                 </div>
                 {!props?.blips && (
                   <div className="flex flex-col gap-y-2">
                     <div className="flex items-center gap-x-2">
-                      <span className="text-[13px] font-bold">
+                      <span className="text-[13px] font-bold text-black dark:text-white">
                         {val?.title}
                       </span>
                     </div>
@@ -98,14 +147,14 @@ export default function Slider(props) {
                   <div className="flex items-start gap-x-2">
                     <img src={profileBlips} alt="" className="w-12" />
                     <div className="flex gap-y-2 flex-col">
-                      <span className="text-[13px] font-bold">
+                      <span className="text-[13px] font-bold text-black dark:text-white">
                         {val?.title}
                       </span>
                       <div>
-                        <span className="block font-thin text-xs">
+                        <span className="block font-thin text-xs text-black dark:text-white">
                           {val?.userName}
                         </span>
-                        <span className="block font-thin text-xs">
+                        <span className="block font-thin text-xs text-black dark:text-white">
                           {val?.timeAgo}
                         </span>
                       </div>
@@ -114,8 +163,7 @@ export default function Slider(props) {
                 )}
               </a>
             </SwiperSlide>
-          );
-        })}
+          ))}
       </Swiper>
     </>
   );

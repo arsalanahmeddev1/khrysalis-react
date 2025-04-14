@@ -55,61 +55,75 @@ const Dashboard = ({ isSettingDashboard }) => {
             // },
             {
                 title: "home",
-                icon: isDarkMode ? home : homeDark,
+                iconLight: home,
+                iconDark: homeDark,
                 path: "/"
             }, {
                 title: "blips",
-                icon: isDarkMode ? blips : blipsDark,
+                iconLight: blips,
+                iconDark: blipsDark,
                 path: '/blips'
             }, {
                 title: "followers",
-                icon: isDarkMode ? followers : followersDark,
+                iconLight: followers,
+                iconDark: followersDark,
                 path: "/followers"
             }, {
                 title: "library",
-                icon: isDarkMode ? library : libraryDark,
+                iconLight: library,
+                iconDark: libraryDark,
                 path: "/library",
             }, {
                 title: "history",
-                icon: isDarkMode ? history : historyDark,
+                iconLight: history,
+                iconDark: historyDark,
                 path: "/history"
             }, {
                 title: "liked",
-                icon: isDarkMode ? liked : likedDark,
+                iconLight: liked,
+                iconDark: likedDark,
                 path: "/liked"
             }, {
                 title: "trending",
-                icon: isDarkMode ? trending : trendingDark,
+                iconLight: trending,
+                iconDark: trendingDark,
                 path: "/trending"
             }, {
                 title: "music",
-                icon: isDarkMode ? music : musicDark,
+                iconLight: music,
+                iconDark: musicDark,
                 path: "/music"
             }, {
                 title: "gaming",
-                icon: isDarkMode ? gaming : gamingDark,
+                iconLight: gaming,
+                iconDark: gamingDark,
                 path: "/gaming"
             }, {
                 title: "news",
-                icon: isDarkMode ? news : newsDark,
+                iconLight: news,
+                iconDark: newsDark,
                 path: "/news"
             }
         ], [
             {
                 title: "settings",
-                icon: isDarkMode ? setting : settingDark,
+                iconLight: setting,
+                iconDark: settingDark,
                 path: "/settings/account"
             }, {
                 title: "report history",
-                icon: isDarkMode ? history : historyDark,
+                iconLight: history,
+                iconDark: historyDark,
                 path: "/report-history"
             }, {
                 title: "help",
-                icon: isDarkMode ? help : helpDark,
+                iconLight: help,
+                iconDark: helpDark,
                 path: "/help-notification"
             }, {
                 title: "send feedback",
-                icon: isDarkMode ? feedback : feedbackDark,
+                iconLight: feedback,
+                iconDark: feedbackDark,
                 path: "/feedback"
             }
         ]
@@ -155,18 +169,19 @@ const Dashboard = ({ isSettingDashboard }) => {
     }, [data?.isDarkMode])
 
     return (
-        <div className="flex flex-col w-[12%] fixed h-[90vh] pt-4 top-[60px] px-6">
+        <div className="flex flex-col w-[12%] fixed h-[90vh] pt-4 top-[60px] px-6 justify-between pe-0">
             
             {!isSettingDashboard ? (
                 items?.map((group, index) => (
                     <div key={`group-${index}`} className={`text-white-false ${index === 1 && 'mt-6'}`}>
                         {group?.map((item) => (
-                            <div key={item.path} className='flex flex-col'>
+                            <div key={item.path} className='flex flex-col pb-[20px]'>
                                 <Link
                                     to={item.path}
-                                    className='flex gap-x-2 text-white-false py-[6px] items-center text-sm hover:text-transparent bg-clip-text bg-gradient-to-r from-[#00E9EE] via-[#5194EC] to-[#D414EE]'
+                                    className='flex gap-x-2 text-black dark:text-white py-[6px] items-center text-sm hover:text-transparent bg-clip-text bg-gradient-to-r from-[#00E9EE] via-[#5194EC] to-[#D414EE]'
                                 >
-                                    <img src={item.icon} alt="" className='w-4' />
+                                    <img src={item.iconLight} alt="" className='w-4 hidden dark:block' />
+                                    <img src={item.iconDark} alt="" className='w-4  block dark:hidden' />
                                     <span className='capitalize'>{item.title}</span>
                                 </Link>
                             </div>

@@ -50,7 +50,7 @@ const Header = () => {
             <input
               type="text"
               placeholder="Search Here..."
-              className="pl-4 w-full bg-transparent focus:outline-none placeholder:text-teal-500 text-teal-400"
+              className="pl-4 w-full bg-transparent border-0 focus:border-0 focus:outline-none placeholder:text-teal-500 text-teal-400"
             />
             <button className="bg-violet-700 w-[67px] h-full rounded-full flex justify-center items-center">
               <img src={searchIcon} alt="Search" className="w-[16px]" />

@@ -67,7 +67,7 @@ const HomePage = () => {
     // Simulating a delay to show the skeleton loader
     setTimeout(() => {
       setLoading(false); // Set loading to false after 2 seconds
-    }, 200000);
+    }, 2000);
   }, []);
 
   return (
@@ -163,8 +163,16 @@ const HomePage = () => {
                   <div className="md:w-2/5 w-full flex flex-col gap-3">
                     <Skeleton height={166.5} width="100%" borderRadius={12} />
                     <div className="flex gap-3">
-                      <Skeleton height={166.5} width="50%" borderRadius={12} />
-                      <Skeleton height={166.5} width="50%" borderRadius={12} />
+                      <div className="w-1/2">
+                        <Skeleton height={150} width="100%" borderRadius={12} /> {/* Thumbnail */}
+                        {/* <Skeleton height={20} width="60%" borderRadius={4} className="mt-2" /> Title */}
+                        {/* <Skeleton height={16} width="40%" borderRadius={4} className="mt-1" /> Author */}
+                      </div>
+                      <div className="w-1/2">
+                        <Skeleton height={150} width="100%" borderRadius={12} /> {/* Thumbnail */}
+                        {/* <Skeleton height={20} width="60%" borderRadius={4} className="mt-2" /> Title */}
+                        {/* <Skeleton height={16} width="40%" borderRadius={4} className="mt-1" /> Author */}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -221,7 +229,7 @@ const HomePage = () => {
               </div>
 
               <div className="text-white-false mt-5">
-                <h1 className="font-semibold border-b-2 uppercase relative top-[1px] w-fit border-blue-600 z-10">Recommended</h1>
+                <h1 className="font-semibold border-b-2 uppercase relative top-[1px] w-fit border-blue-600 z-10 text-black dark:text-white">Recommended</h1>
                 <CustomSlider details={true} />
               </div>
             </div>
