@@ -118,6 +118,18 @@ const blips = () => {
               likes: Math.floor(Math.random() * 10000),
               comments: Math.floor(Math.random() * 500),
             },
+            {
+              id: `page-${page}-${Math.random().toString(36).substr(2, 9)}`,
+              videoUrl:
+                "https://praetorstestnet.com/khy/storage/app/video/lUEU8MmXAvSIXze5f0SdOfvUsJ7LI3frq0IoI2JN.mp4",
+              user: {
+                username: `user_${page}_2`,
+                avatar: "https://randomuser.me/api/portraits/men/54.jpg",
+              },
+              caption: `Road trip vibes! Page ${page} #travel #adventure`,
+              likes: Math.floor(Math.random() * 10000),
+              comments: Math.floor(Math.random() * 500),
+            },
           ])
         }, 1500)
       })

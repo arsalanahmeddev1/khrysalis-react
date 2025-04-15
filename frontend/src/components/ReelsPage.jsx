@@ -93,34 +93,22 @@ const ReelsPage = ({ fetchReels }) => {
 
   return (
     <div
-      className="reels-container w-full bg-black dark:bg-gray-900 overflow-hidden max-w-[500px] mx-auto"
-      style={{ height: "calc(100vh - 72px)" }}
-    >
-      {loading ? (
-        <div className="h-full w-full flex flex-col">
-          <ReelSkeleton />
-        </div>
-      ) : (
-        <InfiniteScroll
-          dataLength={reels.length}
-          next={loadMoreReels}
-          hasMore={hasMore}
-          scrollableTarget="scrollableDiv"
-          loader={
-            <div className="w-full flex justify-center items-center py-4">
-              <BeatLoader color="#ffffff" size={10} />
-            </div>
-          }
-          endMessage={<p className="text-center text-white dark:text-gray-300 py-4">You've seen all reels!</p>}
-          className="h-full snap-y snap-mandatory overflow-y-auto"
-          id="scrollableDiv"
-        >
-          {reels.map((reel) => (
-            <Reel key={reel.id} reel={reel} />
-          ))}
-        </InfiniteScroll>
-      )}
+  className="reels-container w-full bg-black dark:bg-gray-900 overflow-y-auto max-w-[500px] mx-auto snap-y snap-mandatory"
+  style={{ height: "calc(100vh - 72px)" }}
+  id="scrollableDiv"
+>
+  {loading ? (
+    <div className="h-full w-full flex flex-col">
+      <ReelSkeleton />
     </div>
+  ) : (
+    <div className="h-full">
+      {reels.map((reel) => (
+        <Reel key={reel.id} reel={reel} />
+      ))}
+    </div>
+  )}
+</div>
   )
 }
 
