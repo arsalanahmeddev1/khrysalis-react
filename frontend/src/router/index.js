@@ -50,20 +50,14 @@ import HistoryPage from "../pages/History";
 import Public from "../components/Route/PublicRoute";
 import Protected from "../components/Route/ProtectedRoute";
 import VideoUploadPage from "../pages/channel/video-upload";
+import Blips from "../pages/blips";
 
 const AppRouter = () => {
   const routes = [
     { path: "/", element: <HomePage /> },
+    { path: "/blips", element: <Blips /> },
     { path: "/trending", element: <TrendingPage /> },
     { path: "/news", element: <NewsPage /> },
-  ];
-
-  const publicRoutes = [
-    { path: "/login", element: <LoginPage /> },
-    { path: "/signup", element: <SignupPage /> },
-  ];
-
-  const protectedRoutes = [
     { path: "/channel/video-upload", element: <VideoUploadPage /> },
     { path: "/video/:id", element: <VideoPage /> },
     { path: "/followers", element: <FollowersPage /> },
@@ -113,6 +107,63 @@ const AppRouter = () => {
     { path: "/settings/billing&payment", element: <BillingsAndPaymentPage /> },
     { path: "/settings/advance", element: <AdvanceSettingPage /> },
     { path: "/parental-control", element: <ParentalControlPage /> },
+  ];
+
+  const publicRoutes = [
+    { path: "/login", element: <LoginPage /> },
+    { path: "/signup", element: <SignupPage /> },
+  ];
+
+  const protectedRoutes = [
+    // { path: "/channel/video-upload", element: <VideoUploadPage /> },
+    // { path: "/video/:id", element: <VideoPage /> },
+    // { path: "/followers", element: <FollowersPage /> },
+    // { path: "/library", element: <LibraryPage /> },
+    // { path: "/liked", element: <LikedPage /> },
+    // { path: "/music", element: <MusicPage /> },
+    // { path: "/gaming", element: <GamingPage /> },
+    // { path: "/podcast", element: <PodcastPage /> },
+    // { path: "/feedback", element: <FeedbackPage /> },
+    // { path: "/copyright", element: <CopyRightPage /> },
+    // { path: "/history", element: <HistoryPage /> },
+    // { path: "/live-stream", element: <LiveStreamPage /> },
+    // { path: "/help-notification", element: <HelpNotificationPage /> },
+    // { path: "/channel/main", element: <ChannelMainPage /> },
+    // { path: "/channel/dashboard", element: <ChannelDashboardPage /> },
+    // { path: "/channel/content", element: <ChannelContentPage /> },
+    // { path: "/channel/analytics", element: <ChannelAnalyticsPage /> },
+    // {
+    //   path: "/channel/comments/mentions",
+    //   element: <ChannelCommentsMentionPage />,
+    // },
+    // { path: "/channel/subtitles", element: <ChannelSubtitlesPage /> },
+    // { path: "/channel/copyrights", element: <ChannelCopyrightPage /> },
+    // { path: "/channel/earn", element: <ChannelEarningPage /> },
+    // { path: "/channel/customization", element: <ChannelCustomizationPage /> },
+    // { path: "/channel/audio-library", element: <ChannelAudioLibraryPage /> },
+    // { path: "/subscription", element: <SubscriptionHomePage /> },
+    // { path: "/subscription/videos", element: <SubscriptionVideoPage /> },
+    // { path: "/subscription/playlist", element: <SubscriptionPlaylistPage /> },
+    // { path: "/subscription/community", element: <SubscriptionCommunityPage /> },
+    // { path: "/subscription/channels", element: <SubscriptionChannelPage /> },
+    // { path: "/subscription/about", element: <SubscriptionAboutPage /> },
+    // { path: "/report-history", element: <ReportHistoryPage /> },
+    // { path: "/store", element: <StorePage /> },
+    // { path: "/fashion&beauty", element: <FashionPage /> },
+    // { path: "/sports", element: <SportsPage /> },
+    // { path: "/product/details", element: <ProductDetailsPage /> },
+    // { path: "/settings/account", element: <SettingsAccountPage /> },
+    // { path: "/settings/notifications", element: <SettingsNotificationPage /> },
+    // {
+    //   path: "/settings/performance&playback",
+    //   element: <PerformanceAndPlaybackPage />,
+    // },
+    // { path: "/settings/downloads", element: <DownloadsPage /> },
+    // { path: "/settings/privacy", element: <PrivacyPage /> },
+    // { path: "/settings/connected-apps", element: <ConnectedAppsPage /> },
+    // { path: "/settings/billing&payment", element: <BillingsAndPaymentPage /> },
+    // { path: "/settings/advance", element: <AdvanceSettingPage /> },
+    // { path: "/parental-control", element: <ParentalControlPage /> },
   ];
 
   return (

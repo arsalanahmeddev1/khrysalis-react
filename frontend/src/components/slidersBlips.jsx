@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+// import "react-loading-skeleton/dist/skeleton.css";
 
 import { HiOutlineUser } from "react-icons/hi";
 import { Link } from "react-router-dom";
@@ -24,7 +24,7 @@ export default function Slider(props) {
       if (props?.data && props.data.length > 0) {
         setData(props.data);
       }
-    }, 200000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, [props.data]);
@@ -38,6 +38,20 @@ export default function Slider(props) {
         slidesPerView={props?.blips ? 4 : 4}
         spaceBetween={30}
         className="mySwiper relative !w-full flex justify-start mt-4"
+        breakpoints={{
+          0: {
+              slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+          1200: {
+            slidesPerView: 4,
+          },
+        }}
       >
         {loading
           ? skeletonSlides.map((_, index) => (
@@ -55,10 +69,9 @@ export default function Slider(props) {
                     />
                     {props?.details && (
                       <>
-                        <Skeleton
-                        className={"w-full max-w-[372px] h-[16px]"}
-                        />
-                        <Skeleton className={"w-full max-w-[372px] h-[16px]"} />
+                        <Skeleton width={100} height={14}
+                         />
+                        <Skeleton width={80} height={14} />
                       </>
                     )}
                   </div>
@@ -67,8 +80,7 @@ export default function Slider(props) {
                   <div className="flex items-start gap-x-2">
                     <Skeleton circle height={48} width={48} />
                     <div className="flex flex-col gap-y-1">
-                      <Skeleton width={150} height={16}
-                       />
+                      <Skeleton width={270} height={16} />
                       <Skeleton width={100} height={14} />
                       <Skeleton width={80} height={14} />
                     </div>
@@ -147,7 +159,7 @@ export default function Slider(props) {
                   <div className="flex items-start gap-x-2">
                     <img src={profileBlips} alt="" className="w-12" />
                     <div className="flex gap-y-2 flex-col">
-                      <span className="text-[13px] font-bold text-black dark:text-white">
+                      <span className="text-[13px] font-bold text-black dark:text-white max-w-[270px]">
                         {val?.title}
                       </span>
                       <div>

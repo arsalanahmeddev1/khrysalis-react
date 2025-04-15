@@ -76,7 +76,7 @@ const HomePage = () => {
         <Header />
         <div className="px-4">
           <div className="flex justify-between relative top-[72px]">
-            <div className="lg:!w-[14%] sm:w-0 hidden xl:block">
+            <div className="lg:!w-[14%] sm:w-0 hidden xl:block bg-[#6d28d938]">
               <Dashboard />
             </div>
             <div className="md:w-[86%] w-full px-4">
@@ -194,6 +194,7 @@ const HomePage = () => {
                       thumbnail={video2}
                       label="4"
                       profileImage={video3}
+                      height="166.5"
                       author="Author Three"
                       title="Gaming"
                     />

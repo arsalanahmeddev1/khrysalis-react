@@ -34,13 +34,9 @@ const Header = () => {
   return (
     <header>
       <div
-        className={`flex border-b ${
-          isDarkMode
-            ? "bg-[#000] border-white"
-            : "bg-[#fff] border-gray-300"
-        } justify-between items-center py-2 px-2 md:px-8 fixed w-full z-50`}
+        className={`flex border-b  justify-between items-center py-2 px-2 md:px-8 fixed w-full z-50`}
       >
-        <Link to={"/"} className="text-white-false">
+        <Link to={"/"} className="text-black dark:text-white">
           <img src={logo} alt="Logo" className="w-40" />
         </Link>
 
@@ -80,7 +76,7 @@ const Header = () => {
 
           {/* Hamburger Menu for Mobile */}
           <button
-            className="xl:hidden text-white-false text-2xl"
+            className="xl:hidden text-black dark:text-white text-2xl"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <FiMenu />
@@ -90,10 +86,10 @@ const Header = () => {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed top-0 left-0 w-2/4 h-full bg-gray-900 p-4 z-50 xl:hidden">
+        <div className="fixed top-0 left-0 w-2/4 h-full bg-white dark:bg-gray-900  p-4 z-50 xl:hidden">
           <Dashboard isSettingDashboard={false} />
           <button
-            className="absolute top-4 right-4 text-white text-2xl"
+            className="absolute top-4 right-4 text-black dark:text-white text-2xl"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             ✕

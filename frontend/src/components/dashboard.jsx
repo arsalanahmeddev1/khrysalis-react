@@ -33,19 +33,19 @@ import newsDark from '../assets/icons/news-dark.png'
 import settingDark from '../assets/icons/settings-dark.png'
 import helpDark from '../assets/icons/help-dark.png'
 import feedbackDark from '../assets/icons/help-2-dark.png'
-import { Skeleton } from 'antd'
+import Skeleton from "react-loading-skeleton";
 
 const Dashboard = ({ isSettingDashboard }) => {
     const [isLoading, setIsLoading] = useState(true)
     const { data, updateData } = useContext(MyContext);
-    const [isDarkMode, setIsDarkMode] = useState(data.isDarkMode)
+    // const [isDarkMode, setIsDarkMode] = useState(data.isDarkMode)
     useEffect(() => {
         const timer = setTimeout(() => setIsLoading(false), 2000)
         return () => clearTimeout(timer)
     }, [])
 
-   
-    
+
+
 
 
     const items = [
@@ -164,37 +164,44 @@ const Dashboard = ({ isSettingDashboard }) => {
         }
     ]
 
-    useEffect(() => {
-        setIsDarkMode(data?.isDarkMode)
-    }, [data?.isDarkMode])
+    // useEffect(() => {
+    //     setIsDarkMode(data?.isDarkMode)
+    // }, [data?.isDarkMode])
 
     return (
         <div className="flex flex-col w-[12%] fixed h-[90vh] pt-4 top-[60px] px-6 justify-between pe-0">
-            
-            {!isSettingDashboard ? (
+            {isLoading ? (
+                <div className="p-4 h-full">
+                    <Skeleton
+                        height={20}
+                        count={items.flat().length}
+                        className="mb-2"
+                    />
+                </div>
+            ) : !isSettingDashboard ? (
                 items?.map((group, index) => (
-                    <div key={`group-${index}`} className={`text-white-false ${index === 1 && 'mt-6'}`}>
+                    <div key={`group-${index}`} className={`text-black dark:text-white ${index === 1 && 'mt-6'}`}>
                         {group?.map((item) => (
-                            <div key={item.path} className='flex flex-col pb-[20px]'>
+                            <div key={item.path} className="flex flex-col pb-[20px]">
                                 <Link
                                     to={item.path}
-                                    className='flex gap-x-2 text-black dark:text-white py-[6px] items-center text-sm hover:text-transparent bg-clip-text bg-gradient-to-r from-[#00E9EE] via-[#5194EC] to-[#D414EE]'
+                                    className="flex gap-x-2 text-black dark:text-white py-[6px] items-center text-sm hover:text-transparent bg-clip-text bg-gradient-to-r from-[#00E9EE] via-[#5194EC] to-[#D414EE]"
                                 >
-                                    <img src={item.iconLight} alt="" className='w-4 hidden dark:block' />
-                                    <img src={item.iconDark} alt="" className='w-4  block dark:hidden' />
-                                    <span className='capitalize'>{item.title}</span>
+                                    <img src={item.iconLight} alt="" className="w-4 hidden dark:block" />
+                                    <img src={item.iconDark} alt="" className="w-4 block dark:hidden" />
+                                    <span className="capitalize">{item.title}</span>
                                 </Link>
                             </div>
                         ))}
                     </div>
                 ))
             ) : (
-                <div className='text-white-false'>
+                <div className="text-white">
                     {settingItems?.map((item) => (
-                        <div key={item.path} className='flex flex-col'>
+                        <div key={item.path} className="flex flex-col">
                             <Link
                                 to={item.path}
-                                className='flex gap-x-2 text-white-false py-[6px] items-center text-sm hover:text-transparent bg-clip-text bg-gradient-to-r from-[#00E9EE] via-[#5194EC] to-[#D414EE]'
+                                className="flex gap-x-2 text-white-false py-[6px] items-center text-sm hover:text-transparent bg-clip-text bg-gradient-to-r from-[#00E9EE] via-[#5194EC] to-[#D414EE]"
                             >
                                 <span>{item.title}</span>
                             </Link>
@@ -203,7 +210,8 @@ const Dashboard = ({ isSettingDashboard }) => {
                 </div>
             )}
         </div>
-    )
+    );
+
 }
 
 export default Dashboard
