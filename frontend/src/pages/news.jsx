@@ -1,4 +1,4 @@
-import Header from "../components/header"
+import Header from "../components/header-old"
 import Dashboard from "../components/dashboard"
 import history1Img from '../assets/images/history-1.png'
 import history2Img from '../assets/images/history-2.png'

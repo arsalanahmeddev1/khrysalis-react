@@ -14,6 +14,7 @@ const options = {
 };
 
 const MyProvider = ({ children }) => {
+  const [searchQuery, setSearchQuery] = useState("");
   const [data, setData] = useState({
     isDarkMode: true,
   });
@@ -25,7 +26,7 @@ const MyProvider = ({ children }) => {
   return (
     <Provider store={store}>
       <AlertProvider template={AlertTemplate} {...options}>
-        <MyContext.Provider value={{ data, updateData }}>
+        <MyContext.Provider value={{ data, updateData, searchQuery, setSearchQuery}}>
           {children}
         </MyContext.Provider>
       </AlertProvider>

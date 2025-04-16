@@ -51,6 +51,7 @@ import Public from "../components/Route/PublicRoute";
 import Protected from "../components/Route/ProtectedRoute";
 import VideoUploadPage from "../pages/channel/video-upload";
 import Blips from "../pages/blips";
+import Subscriptions from "../pages/Subscriptions";
 
 const AppRouter = () => {
   const routes = [
@@ -60,7 +61,7 @@ const AppRouter = () => {
     { path: "/news", element: <NewsPage /> },
     { path: "/channel/video-upload", element: <VideoUploadPage /> },
     { path: "/video/:id", element: <VideoPage /> },
-    { path: "/followers", element: <FollowersPage /> },
+    { path: "/followers", element: <Subscriptions /> },
     { path: "/library", element: <LibraryPage /> },
     { path: "/liked", element: <LikedPage /> },
     { path: "/music", element: <MusicPage /> },
