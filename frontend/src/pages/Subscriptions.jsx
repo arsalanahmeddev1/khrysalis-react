@@ -1,17 +1,15 @@
-import { useState, useEffect, useContext } from "react";
-import { initialSubscriptionsData } from "../data";
-import MyContext from "../router/context";
-import SubscriptionsContent from "../components/SubscriptionsContent";
-import Layout from "../components/Layouts/Layout";  
+"use client"
+
+import { useState, useEffect, useContext } from "react"
+import { initialSubscriptionsData } from "../data"
+import MyContext from "../router/context"
+import SubscriptionsContent from "../components/SubscriptionsContent"
+import Layout from "../components/Layouts/Layout"
 
 const Subscriptions = () => {
   const [subscriptions, setSubscriptions] = useState([])
   const [filteredSubscriptions, setFilteredSubscriptions] = useState([])
-  const { searchQuery, setSearchQuery } = useContext(MyContext);
-
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
-  const [sortOption, setSortOption] = useState("alphabetical") // alphabetical, recent, popularity
-  const [viewMode, setViewMode] = useState("grid") // grid or list
+  const { searchQuery, setSearchQuery } = useContext(MyContext)
 
   // Load initial data
   useEffect(() => {
@@ -20,11 +18,11 @@ const Subscriptions = () => {
     if (savedSubscriptions) {
       const parsedData = JSON.parse(savedSubscriptions)
       setSubscriptions(parsedData)
-      setFilteredSubscriptions(sortSubscriptions(parsedData, sortOption))
+      setFilteredSubscriptions(parsedData)
     } else {
       // Use initial mock data
       setSubscriptions(initialSubscriptionsData)
-      setFilteredSubscriptions(sortSubscriptions(initialSubscriptionsData, sortOption))
+      setFilteredSubscriptions(initialSubscriptionsData)
       // Save to localStorage
       localStorage.setItem("youtubeSubscriptions", JSON.stringify(initialSubscriptionsData))
     }
@@ -33,56 +31,22 @@ const Subscriptions = () => {
   // Handle search functionality
   useEffect(() => {
     if (searchQuery.trim() === "") {
-      setFilteredSubscriptions(sortSubscriptions(subscriptions, sortOption))
+      setFilteredSubscriptions(subscriptions)
     } else {
       const filtered = subscriptions.filter(
         (channel) =>
           channel.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
           channel.description.toLowerCase().includes(searchQuery.toLowerCase()),
       )
-      setFilteredSubscriptions(sortSubscriptions(filtered, sortOption))
+      setFilteredSubscriptions(filtered)
     }
-  }, [searchQuery, subscriptions, sortOption])
-
-  // Sort subscriptions based on selected option
-  const sortSubscriptions = (subs, option) => {
-    const sortedSubs = [...subs]
-
-    switch (option) {
-      case "alphabetical":
-        return sortedSubs.sort((a, b) => a.name.localeCompare(b.name))
-      case "recent":
-        return sortedSubs.sort((a, b) => new Date(b.lastUpload.date) - new Date(a.lastUpload.date))
-      case "popularity":
-        return sortedSubs.sort((a, b) => {
-          const aCount =
-            Number.parseInt(a.subscribers.replace(/[KM]/g, "")) *
-            (a.subscribers.includes("M") ? 1000000 : a.subscribers.includes("K") ? 1000 : 1)
-          const bCount =
-            Number.parseInt(b.subscribers.replace(/[KM]/g, "")) *
-            (b.subscribers.includes("M") ? 1000000 : b.subscribers.includes("K") ? 1000 : 1)
-          return bCount - aCount
-        })
-      default:
-        return sortedSubs
-    }
-  }
+  }, [searchQuery, subscriptions])
 
   // Handle unsubscribe
   const handleUnsubscribe = (channelId) => {
     const updatedSubscriptions = subscriptions.filter((channel) => channel.id !== channelId)
     setSubscriptions(updatedSubscriptions)
-    setFilteredSubscriptions(
-      sortSubscriptions(
-        updatedSubscriptions.filter(
-          (channel) =>
-            searchQuery.trim() === "" ||
-            channel.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            channel.description.toLowerCase().includes(searchQuery.toLowerCase()),
-        ),
-        sortOption,
-      ),
-    )
+    setFilteredSubscriptions(updatedSubscriptions)
 
     // Update localStorage
     localStorage.setItem("youtubeSubscriptions", JSON.stringify(updatedSubscriptions))
@@ -98,17 +62,7 @@ const Subscriptions = () => {
     })
 
     setSubscriptions(updatedSubscriptions)
-    setFilteredSubscriptions(
-      sortSubscriptions(
-        updatedSubscriptions.filter(
-          (channel) =>
-            searchQuery.trim() === "" ||
-            channel.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            channel.description.toLowerCase().includes(searchQuery.toLowerCase()),
-        ),
-        sortOption,
-      ),
-    )
+    setFilteredSubscriptions(updatedSubscriptions)
 
     // Update localStorage
     localStorage.setItem("youtubeSubscriptions", JSON.stringify(updatedSubscriptions))
@@ -119,36 +73,17 @@ const Subscriptions = () => {
     setSearchQuery(query)
   }
 
-  // Toggle sidebar
-  const toggleSidebar = () => {
-    setSidebarCollapsed(!sidebarCollapsed)
-  }
-
-  // Handle sort option change
-  const handleSortChange = (option) => {
-    setSortOption(option)
-    setFilteredSubscriptions(sortSubscriptions(filteredSubscriptions, option))
-  }
-
-  // Handle view mode change
-  const handleViewModeChange = (mode) => {
-    setViewMode(mode)
-  }
-
   return (
     <Layout title="Subscriptions">
       <SubscriptionsContent
-          subscriptions={filteredSubscriptions}
-          onUnsubscribe={handleUnsubscribe}
-          onNotificationChange={handleNotificationChange}
-          searchQuery={searchQuery}
-          onSearchChange={handleSearchChange}
-          sortOption={sortOption}
-          onSortChange={handleSortChange}
-          viewMode={viewMode}
-          onViewModeChange={handleViewModeChange}
-        />
+        subscriptions={filteredSubscriptions}
+        onUnsubscribe={handleUnsubscribe}
+        onNotificationChange={handleNotificationChange}
+        searchQuery={searchQuery}
+        onSearchChange={handleSearchChange}
+      />
     </Layout>
   )
 }
-export default Subscriptions;
+
+export default Subscriptions

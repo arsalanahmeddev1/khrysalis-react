@@ -1,22 +1,12 @@
-import { useState } from "react";
-import { FaSearch, FaThLarge, FaList, FaSortAmountDown } from "react-icons/fa";
-import ChannelCard from "./ChannelCard";
-import ChannelListItem from "./ChannelListItem";
+"use client"
 
-const SubscriptionsContent = ({
-  subscriptions,
-  onUnsubscribe,
-  onNotificationChange,
-  searchQuery,
-  onSearchChange,
-  sortOption,
-  onSortChange,
-  viewMode,
-  onViewModeChange,
-}) => {
+import { useState } from "react"
+import { FaSearch } from "react-icons/fa"
+import ChannelCard from "./ChannelCard"
+
+const SubscriptionsContent = ({ subscriptions, onUnsubscribe, onNotificationChange, searchQuery, onSearchChange }) => {
   const [showSearch, setShowSearch] = useState(false)
   const [localSearch, setLocalSearch] = useState(searchQuery || "")
-  const [showSortMenu, setShowSortMenu] = useState(false)
 
   const handleSearchSubmit = (e) => {
     e.preventDefault()
@@ -29,23 +19,10 @@ const SubscriptionsContent = ({
     setShowSearch(false)
   }
 
-  const getSortLabel = () => {
-    switch (sortOption) {
-      case "alphabetical":
-        return "Alphabetically"
-      case "recent":
-        return "Recently uploaded"
-      case "popularity":
-        return "Most popular"
-      default:
-        return "Sort by"
-    }
-  }
-
   return (
     <>
-      <div className="flex items-center justify-end mb-6 flex-wrap">
-        <div className="flex items-center mt-2 sm:mt-0 space-x-2">
+      {/* <div className="flex items-center justify-end mb-6">
+        <div className="flex items-center mt-2 sm:mt-0">
           {showSearch ? (
             <form onSubmit={handleSearchSubmit} className="flex items-center">
               <div className="relative">
@@ -72,80 +49,16 @@ const SubscriptionsContent = ({
               </button>
             </form>
           ) : (
-            <>
-              <button
-                onClick={() => setShowSearch(true)}
-                className="flex items-center px-3 py-1.5 bg-[#272727] rounded-full text-sm"
-              >
-                <FaSearch className="mr-2" />
-                Search
-              </button>
-
-              <div className="relative">
-                <button
-                  onClick={() => setShowSortMenu(!showSortMenu)}
-                  className="flex items-center px-3 py-1.5 bg-[#272727] rounded-full text-sm"
-                >
-                  <FaSortAmountDown className="mr-2" />
-                  {getSortLabel()}
-                </button>
-
-                {showSortMenu && (
-                  <div className="absolute right-0 top-10 bg-[#212121] rounded-lg shadow-lg z-10 w-48 py-2">
-                    <button
-                      className={`flex items-center w-full px-4 py-2 text-sm text-left hover:bg-[#3a3a3a] ${sortOption === "alphabetical" ? "bg-[#3a3a3a]" : ""
-                        }`}
-                      onClick={() => {
-                        onSortChange("alphabetical")
-                        setShowSortMenu(false)
-                      }}
-                    >
-                      Alphabetically
-                    </button>
-                    <button
-                      className={`flex items-center w-full px-4 py-2 text-sm text-left hover:bg-[#3a3a3a] ${sortOption === "recent" ? "bg-[#3a3a3a]" : ""
-                        }`}
-                      onClick={() => {
-                        onSortChange("recent")
-                        setShowSortMenu(false)
-                      }}
-                    >
-                      Recently uploaded
-                    </button>
-                    <button
-                      className={`flex items-center w-full px-4 py-2 text-sm text-left hover:bg-[#3a3a3a] ${sortOption === "popularity" ? "bg-[#3a3a3a]" : ""
-                        }`}
-                      onClick={() => {
-                        onSortChange("popularity")
-                        setShowSortMenu(false)
-                      }}
-                    >
-                      Most popular
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              <div className="flex bg-[#272727] rounded-full overflow-hidden">
-                <button
-                  className={`px-3 py-1.5 text-sm ${viewMode === "grid" ? "bg-[#3a3a3a]" : ""}`}
-                  onClick={() => onViewModeChange("grid")}
-                  title="Grid view"
-                >
-                  <FaThLarge />
-                </button>
-                <button
-                  className={`px-3 py-1.5 text-sm ${viewMode === "list" ? "bg-[#3a3a3a]" : ""}`}
-                  onClick={() => onViewModeChange("list")}
-                  title="List view"
-                >
-                  <FaList />
-                </button>
-              </div>
-            </>
+            <button
+              onClick={() => setShowSearch(true)}
+              className="flex items-center px-3 py-1.5 bg-[#272727] rounded-full text-sm"
+            >
+              <FaSearch className="mr-2" />
+              Search
+            </button>
           )}
         </div>
-      </div>
+      </div> */}
 
       {subscriptions.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16">
@@ -171,29 +84,16 @@ const SubscriptionsContent = ({
             {subscriptions.length} {subscriptions.length === 1 ? "channel" : "channels"}
           </div>
 
-          {viewMode === "grid" ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {subscriptions.map((channel) => (
-                <ChannelCard
-                  key={channel.id}
-                  channel={channel}
-                  onUnsubscribe={onUnsubscribe}
-                  onNotificationChange={onNotificationChange}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {subscriptions.map((channel) => (
-                <ChannelListItem
-                  key={channel.id}
-                  channel={channel}
-                  onUnsubscribe={onUnsubscribe}
-                  onNotificationChange={onNotificationChange}
-                />
-              ))}
-            </div>
-          )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {subscriptions.map((channel) => (
+              <ChannelCard
+                key={channel.id}
+                channel={channel}
+                onUnsubscribe={onUnsubscribe}
+                onNotificationChange={onNotificationChange}
+              />
+            ))}
+          </div>
         </>
       )}
     </>

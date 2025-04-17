@@ -1,11 +1,10 @@
-import {FaTrash } from "react-icons/fa"
-import VideoHistoryItem from "../components/VideoHistoryItem"
+import { FaTrash } from "react-icons/fa"
+import LikedVideoCard from "./LikedVideoCard"
 
 const HistoryContent = ({ groupedVideos, onRemoveVideo, searchQuery }) => {
   return (
     <main className="flex-1 overflow-y-auto bg-[#0f0f0f] p-6">
       <div className="max-w-[1280px] mx-auto">
-
         {Object.keys(groupedVideos).map((timeGroup) => {
           if (groupedVideos[timeGroup].length === 0) return null
 
@@ -32,7 +31,22 @@ const HistoryContent = ({ groupedVideos, onRemoveVideo, searchQuery }) => {
               <div className="text-sm text-gray-400 mb-2 mt-6">{groupTitle}</div>
               <div className="space-y-4">
                 {groupedVideos[timeGroup].map((video) => (
-                  <VideoHistoryItem key={video.id} video={video} onRemove={() => onRemoveVideo(video.id)} />
+                  <LikedVideoCard
+                    key={video.id}
+                    video={{
+                      ...video,
+                      channelName: video.channel,
+                      publishedAt: video.uploadTime,
+                      watchedTime: video.watchedAt, // Add watched time for history display
+                    }}
+                    onRemove={() => onRemoveVideo(video.id)}
+                    removeFromLikedVideos="Remove from history"
+                    // Savetoplaylist="Save to playlist"
+                    // share="Share"
+                    // addToQueue="Add to queue"
+                    // notInterested="Not interested"
+                    isHistoryItem={true} // Flag to indicate this is a history item
+                  />
                 ))}
               </div>
             </div>
@@ -45,9 +59,7 @@ const HistoryContent = ({ groupedVideos, onRemoveVideo, searchQuery }) => {
             <p className="text-xl text-gray-300">No videos found</p>
             {searchQuery && <p className="text-gray-400 mt-2">No results found for "{searchQuery}"</p>}
             {searchQuery && (
-              <button
-                className="mt-4 px-4 py-2 bg-[#272727] rounded-full text-sm hover:bg-[#3a3a3a]"
-              >
+              <button className="mt-4 px-4 py-2 bg-[#272727] rounded-full text-sm hover:bg-[#3a3a3a]">
                 Clear search
               </button>
             )}
