@@ -5,12 +5,13 @@ import { Header, CustomSlider, Sidebar } from "../components";
 import { blipsIcon, video1, video2, video3, video4 } from "../assets/images";
 import LiveSlider from "../components/liveslider";
 import SlidersBlips from "../components/slidersBlips";
-import { blipLinks} from "../components/videoLinks";
+import { blipLinks } from "../components/videoLinks";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CustomArrow from "../components/CustomArrow";
 import Skeleton from 'react-loading-skeleton';
 import VideoCard from "../components/VideoCard";
+import Layout from "../components/Layouts/Layout";
 
 // import Sidebar from "../components/Sidebar";
 const HomePage = () => {
@@ -72,120 +73,111 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen bg-[#0f0f0f] text-white">
-      <Header onMenuClick={toggleSidebar}/>
-      <div className="flex flex-1 overflow-hidden">
-        <Sidebar collapsed={sidebarCollapsed} />
-
-        <main class="flex-1 overflow-y-auto bg-white dark:bg-[#0f0f0f] p-6">
-          <div className="max-w-[1560px] mx-auto">
-            <div className="flex justify-center items-center">
-              <img src={blipsIcon} className="w-[52px]" alt="Blips Icon" />
-            </div>
-            {loading ? (
-              <div className="flex gap-2 mt-4">
-                {Array.from({ length: 8 }).map((_, index) => (
-                  <Skeleton
-                    key={index}
-                    height={32}
-                    width={190}
-                    borderRadius={4}
-                  />
-                ))}
-              </div>
-            ) : (
-              <Slider {...settings} className="text-white mt-4 options-slider">
-                {categories.map((item, index) => (
-                  <div key={index} className="text-center px-2">
-                    <div
-                      className="category-item cursor-pointer bg-gray-700 rounded 
+    <Layout>
+      <div className="flex justify-center items-center">
+        <img src={blipsIcon} className="w-[52px]" alt="Blips Icon" />
+      </div>
+      {loading ? (
+        <div className="flex gap-2 mt-4">
+          {Array.from({ length: 8 }).map((_, index) => (
+            <Skeleton
+              key={index}
+              height={32}
+              width={190}
+              borderRadius={4}
+            />
+          ))}
+        </div>
+      ) : (
+        <Slider {...settings} className="text-white mt-4 options-slider">
+          {categories.map((item, index) => (
+            <div key={index} className="text-center px-2">
+              <div
+                className="category-item cursor-pointer bg-gray-700 rounded 
           text-xs md:text-sm lg:text-base 
           py-1 text-center"
-                    >
-                      {item}
-                    </div>
-                  </div>
-                ))}
-              </Slider>
-            )}
-            {loading ? (
-              <div className="flex flex-col md:flex-row mt-3 gap-3">
-                <div className="md:w-3/5 w-full">
-                  <Skeleton height={333} width="100%" borderRadius={12} />
-                </div>
-                <div className="md:w-2/5 w-full flex flex-col gap-3">
-                  <Skeleton height={166.5} width="100%" borderRadius={12} />
-                  <div className="flex gap-3">
-                    <div className="w-1/2">
-                      <Skeleton height={150} width="100%" borderRadius={12} /> {/* Thumbnail */}
-                    </div>
-                    <div className="w-1/2">
-                      <Skeleton height={150} width="100%" borderRadius={12} /> {/* Thumbnail */}
-                    </div>
-                  </div>
-                </div>
+              >
+                {item}
               </div>
-            ) : (
-              <div className="flex flex-col md:flex-row mt-3 gap-3">
-                <div className="md:w-3/5 w-full">
-                  <VideoCard
-                    layout="large"
-                    thumbnail={video1}
-                    label="3"
-                    profileImage={video2}
-                    author="Author Three"
-                    title="Gaming"
-                  />
-                </div>
-                <div className="md:w-2/5 w-full flex flex-col gap-3">
-                  <VideoCard
-                    layout="overlay"
-                    thumbnail={video2}
-                    label="4"
-                    profileImage={video3}
-                    height="166.5"
-                    author="Author Three"
-                    title="Gaming"
-                  />
-                  <div className="flex gap-3">
-                    <VideoCard
-                      layout="simple"
-                      thumbnail={video3}
-                      label="3"
-                      profileImage={video3}
-                      author="Author Three"
-                      title="Gaming"
-                    />
-                    <VideoCard
-                      layout="simple"
-                      thumbnail={video4}
-                      label="4"
-                      profileImage={video3}
-                      author="Author Three"
-                      title="Gaming"
-                    />
-                  </div>
-                </div>
+            </div>
+          ))}
+        </Slider>
+      )}
+      {loading ? (
+        <div className="flex flex-col md:flex-row mt-3 gap-3">
+          <div className="md:w-3/5 w-full">
+            <Skeleton height={333} width="100%" borderRadius={12} />
+          </div>
+          <div className="md:w-2/5 w-full flex flex-col gap-3">
+            <Skeleton height={166.5} width="100%" borderRadius={12} />
+            <div className="flex gap-3">
+              <div className="w-1/2">
+                <Skeleton height={150} width="100%" borderRadius={12} /> {/* Thumbnail */}
               </div>
-            )}
-            <div className="mt-5">
-              <h1 className="font-semibold border-b-2 text-white-false relative top-[1px] w-fit border-blue-600 z-10 text-black dark:text-white">Live</h1>
-              <LiveSlider />
-            </div>
-
-            <div className="text-white-false mt-5">
-              <h1 className="font-semibold border-b-2 relative top-[1px] w-fit border-blue-600 z-10 text-black dark:text-white">Blips</h1>
-              <SlidersBlips data={blipLinks} blips={true} />
-            </div>
-
-            <div className="text-white-false mt-5">
-              <h1 className="font-semibold border-b-2 uppercase relative top-[1px] w-fit border-blue-600 z-10 text-black dark:text-white">Recommended</h1>
-              <CustomSlider details={true} />
+              <div className="w-1/2">
+                <Skeleton height={150} width="100%" borderRadius={12} /> {/* Thumbnail */}
+              </div>
             </div>
           </div>
-        </main>
+        </div>
+      ) : (
+        <div className="flex flex-col md:flex-row mt-3 gap-3">
+          <div className="md:w-3/5 w-full">
+            <VideoCard
+              layout="large"
+              thumbnail={video1}
+              label="3"
+              profileImage={video2}
+              author="Author Three"
+              title="Gaming"
+            />
+          </div>
+          <div className="md:w-2/5 w-full flex flex-col gap-3">
+            <VideoCard
+              layout="overlay"
+              thumbnail={video2}
+              label="4"
+              profileImage={video3}
+              height="166.5"
+              author="Author Three"
+              title="Gaming"
+            />
+            <div className="flex gap-3">
+              <VideoCard
+                layout="simple"
+                thumbnail={video3}
+                label="3"
+                profileImage={video3}
+                author="Author Three"
+                title="Gaming"
+              />
+              <VideoCard
+                layout="simple"
+                thumbnail={video4}
+                label="4"
+                profileImage={video3}
+                author="Author Three"
+                title="Gaming"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+      <div className="mt-5">
+        <h1 className="font-semibold border-b-2 text-white-false relative top-[1px] w-fit border-blue-600 z-10 text-black dark:text-white">Live</h1>
+        <LiveSlider />
       </div>
-    </div>
+
+      <div className="text-white-false mt-5">
+        <h1 className="font-semibold border-b-2 relative top-[1px] w-fit border-blue-600 z-10 text-black dark:text-white">Blips</h1>
+        <SlidersBlips data={blipLinks} blips={true} />
+      </div>
+
+      <div className="text-white-false mt-5">
+        <h1 className="font-semibold border-b-2 uppercase relative top-[1px] w-fit border-blue-600 z-10 text-black dark:text-white">Recommended</h1>
+        <CustomSlider details={true} />
+      </div>
+    </Layout>
   );
 };
 

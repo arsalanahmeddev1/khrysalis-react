@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { initialSubscriptionsData } from "../data";
 import MyContext from "../router/context";
 import SubscriptionsContent from "../components/SubscriptionsContent";
-import Layout from "../components/Layouts/Layout";
+import Layout from "../components/Layouts/Layout";  
 
 const Subscriptions = () => {
   const [subscriptions, setSubscriptions] = useState([])
@@ -136,7 +136,7 @@ const Subscriptions = () => {
   }
 
   return (
-    <Layout>
+    <Layout title="Subscriptions">
       <SubscriptionsContent
           subscriptions={filteredSubscriptions}
           onUnsubscribe={handleUnsubscribe}

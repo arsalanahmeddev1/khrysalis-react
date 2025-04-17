@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Skeleton from "react-loading-skeleton"; // or your custom Skeleton
+import Skeleton from "react-loading-skeleton";
 
 const VideoCard = ({
   thumbnail,
@@ -7,7 +7,7 @@ const VideoCard = ({
   profileImage,
   author,
   title,
-  layout = "large", // large | overlay | simple
+  layout = "large",
 }) => {
   const [isLoading, setIsLoading] = useState(true);
 

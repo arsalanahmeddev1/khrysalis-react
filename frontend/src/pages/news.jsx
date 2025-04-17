@@ -1,70 +1,90 @@
-import Header from "../components/header-old"
-import Dashboard from "../components/dashboard"
-import history1Img from '../assets/images/history-1.png'
-import history2Img from '../assets/images/history-2.png'
-import history3Img from '../assets/images/history-3.png'
-import history4Img from '../assets/images/history-4.png'
-import { recommendedLinks, LiveNewsLinks } from '../components/videoLinks'
-import Slider from "../components/sliders"
-import LineDivider from '../components/divider'
-
+import { useState, useEffect } from "react";
+import Layout from "../components/Layouts/Layout";
+import TrendingVideoList from "../components/TrendingVideoList";
+import CategoryTabs from "../components/CategoryTabs";
+import { initialTrendingVideos } from "../data";
+import Skeleton from "react-loading-skeleton";
 
 const NewsPage = () => {
+  const [videos, setVideos] = useState([])
+  const [filteredVideos, setFilteredVideos] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [activeCategory, setActiveCategory] = useState("all")
 
-    return (
-        <div className="bg-black-false pb-20 min-h-screen">
-            <div className="w-full m-auto">
-                <Header />
-                <div className="px-4">
-                    {/* Main  */}
-                    <div className="flex justify-between relative top-[72px]">
-                    <div className="lg:!w-[14%] sm:w-0 hidden xl:block">
-              <Dashboard />
-            </div>
-                        <div className="md:w-[86%]  w-full">
-                            <div className="mt-4 text-white-false">
-                                <div>
-                                    <h1 className="font-semibold text-[25px] leading-none">Live News</h1>
-                                    <span className="text-[10px]">93.7M subscribers</span>
-                                </div>
-                                <div className="flex justify-between flex-wrap gap-5 text-white-false mt-8">
-                                    <div className="w-[232px] flex-col flex gap-y-2">
-                                        <div><img src={history1Img} className="w-[232px] h-[135px]" alt="" /></div>
-                                        <span className="block text-[13px] font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry</span>
-                                    </div>
-                                    <div className="w-[232px] flex-col flex gap-y-2">
-                                        <div><img src={history2Img} className="w-[232px] h-[135px]" alt="" /></div>
-                                        <span className="block text-[13px] font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry</span>
-                                    </div>
-                                    <div className="w-[232px] flex-col flex gap-y-2">
-                                        <div><img src={history3Img} className="w-[232px] h-[135px]" alt="" /></div>
-                                        <span className="block text-[13px] font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry</span>
-                                    </div>
-                                    <div className="w-[232px] flex-col flex gap-y-2">
-                                        <div><img src={history4Img} className="w-[232px] h-[135px]" alt="" /></div>
-                                        <span className="block text-[13px] font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry</span>
-                                    </div>
-                                </div>
-                            </div>
+  const categories = [
+    { id: "top-stories", name: "Top Stories" },
+    { id: "sport", name: "Sports" },
+    { id: "entertainment", name: "Entertainment" },
+    { id: "business", name: "Business" },
+    { id: "technology", name: "Technology" },
+    { id: "world", name: "World" },
+  ]
 
-                            <LineDivider/>
+  useEffect(() => {
+    const loadVideos = async () => {
+      setLoading(true)
+      // Simulate network delay
+      await new Promise((resolve) => setTimeout(resolve, 500))
+      setVideos(initialTrendingVideos)
+      setFilteredVideos(initialTrendingVideos)
+      setLoading(false)
+    }
 
-                            <div className="mt-4 text-white-false">
-                                <div>
-                                    <h1 className="font-semibold text-[25px] leading-none">Regular News</h1>
-                                </div>
-                                <div className="flex mt-6 gap-6 justify-between flex-wrap">
-                                    <Slider data={recommendedLinks} details={true}></Slider>
-                                </div>
-                            </div>
+    loadVideos()
+  }, [])
 
-                        </div>
-                    </div>
+  // Handle category change
+  useEffect(() => {
+    if (activeCategory === "all") {
+      setFilteredVideos(videos)
+    } else {
+      const filtered = videos.filter((video) => video.category.toLowerCase() === activeCategory.toLowerCase())
+      setFilteredVideos(filtered)
+    }
+  }, [activeCategory, videos])
+
+  // Handle category selection
+  const handleCategoryChange = (categoryId) => {
+    setActiveCategory(categoryId)
+  }
+
+  return (
+    <Layout title="News">
+      <div className="mb-6">
+        {loading ? (
+          <div className="mb-6">
+            <Skeleton height={48} className="rounded-lg" />
+          </div>
+        ) : (
+          <CategoryTabs
+            categories={categories}
+            activeCategory={activeCategory}
+            onCategoryChange={handleCategoryChange}
+          />
+        )}
+      </div>
+
+      {loading ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[...Array(9)].map((_, index) => (
+            <div key={index} className="flex flex-col gap-4">
+              <Skeleton height={180} className="rounded-xl" />
+              <div className="flex gap-2">
+                <Skeleton circle width={36} height={36} />
+                <div className="flex-1">
+                  <Skeleton height={20} width="90%" className="mb-2" />
+                  <Skeleton height={16} width="60%" className="mb-1" />
+                  <Skeleton height={16} width="40%" />
                 </div>
+              </div>
             </div>
+          ))}
         </div>
-    )
+      ) : (
+        <TrendingVideoList videos={filteredVideos} />
+      )}
+    </Layout>
+  )
 }
-
 
 export default NewsPage

@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import HomePage from "../pages/home";
-import FollowersPage from "../pages/followers";
 import LibraryPage from "../pages/library";
 import LikedPage from "../pages/liked";
 import MusicPage from "../pages/music";
@@ -39,7 +38,7 @@ import SubscriptionCommunityPage from "../pages/subscription/community";
 import SubscriptionChannelPage from "../pages/subscription/channel";
 import SubscriptionAboutPage from "../pages/subscription/about";
 import ParentalControlPage from "../pages/parentalControl";
-import TrendingPage from "../pages/trending";
+import Trending from "../pages/Trending";
 import GamingPage from "../pages/gaming";
 import FeedbackPage from "../pages/feedback";
 import HelpNotificationPage from "../pages/help-notification";
@@ -57,11 +56,11 @@ const AppRouter = () => {
   const routes = [
     { path: "/", element: <HomePage /> },
     { path: "/blips", element: <Blips /> },
-    { path: "/trending", element: <TrendingPage /> },
+    { path: "/Trending", element: <Trending /> },
     { path: "/news", element: <NewsPage /> },
     { path: "/channel/video-upload", element: <VideoUploadPage /> },
     { path: "/video/:id", element: <VideoPage /> },
-    { path: "/followers", element: <Subscriptions /> },
+    { path: "/Subscriptions", element: <Subscriptions /> },
     { path: "/library", element: <LibraryPage /> },
     { path: "/liked", element: <LikedPage /> },
     { path: "/music", element: <MusicPage /> },

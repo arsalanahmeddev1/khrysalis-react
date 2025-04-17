@@ -1,27 +1,26 @@
 import { Link } from "react-router-dom";
 
-const Button = ({ onClick, children, enabled, path }) => (
-  <>
-    {(onClick && (
-      <button
-        onClick={onClick}
-        className={`text-white-false min-w-[141px] h-[46px] px-3 text-center rounded-[100px] ${
-          enabled != children ? "bg-[#1B1B1B]" : "bg-custom-purple"
-        }`}
-      >
+const Button = ({
+  children,
+  onClick,
+  path,
+  className = "",
+  type = "button", // default type
+}) => {
+
+  if (path) {
+    return (
+      <Link to={path} className={className}>
         {children}
-      </button>
-    )) || (
-      <Link to={`${path}`}>
-        <button
-          className={`text-white-false min-w-[141px] h-[46px] px-3 text-center rounded-[100px] ${
-            enabled != children ? "bg-[#1B1B1B]" : "bg-custom-purple"
-          }`}
-        >
-          {children}
-        </button>
       </Link>
-    )}
-  </>
-);
+    );
+  }
+
+  return (
+    <button onClick={onClick} className={className} type={type}>
+      {children}
+    </button>
+  );
+};
+
 export default Button;

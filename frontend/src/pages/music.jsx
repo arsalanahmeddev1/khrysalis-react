@@ -1,102 +1,73 @@
-import Header from "../components/header"
-import Dashboard from "../components/dashboard"
-import liked1 from '../assets/images/liked-1.png'
+import { useState, useEffect } from "react";
+import Layout from "../components/Layouts/Layout";
+import TrendingVideoList from "../components/TrendingVideoList";
+import CategoryTabs from "../components/CategoryTabs";
+import { initialTrendingVideos } from "../data";
+import Skeleton from "react-loading-skeleton";
 
 const MusicPage = () => {
+  const [videos, setVideos] = useState([])
+  const [filteredVideos, setFilteredVideos] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [activeCategory, setActiveCategory] = useState("all")
 
-    return (
-        <div className="bg-black-false pb-20 min-h-screen">
-            <div className="max-w-screen-xl m-auto">
-                <Header />
-                <div className="px-">
-                    {/* Main  */}
-                    <div className="flex justify-between relative top-[72px]">
-                        <div className="!w-[14%]">
-                            <Dashboard />
-                        </div>
-                        <div className="w-[86%]">
-                            <h1 className="text-[25px] font-bold text-white-false mt-2 mb-6">Music</h1>
-                            <div className="flex gap-8 justify-between flex-wrap text-white-false">
-                                <div className="flex items-center gap-x-4">
-                                    <div className="w-[223px] h-[135px]"><img src={liked1} className="w-full h-full" alt="" /></div>
-                                    <div className="flex flex-col gap-y-2 h-fit py-2 w-[220px]">
-                                        <p className="text-[13px] font-bold">Lorem Ipsimply dummy text um is simply dummy text of the printing </p>
-                                        <p className="text-[10px]">Lorem If the printing and typesettingpsum is f the printing and typesettingsimply.</p>
-                                        <div className="text-[10px] flex items-center justify-between">
-                                            <span className="font-semibold tracking-wider">Gameforall</span>
-                                            <div className="flex gap-x-2">
-                                                <span>
-                                                    532 views
-                                                </span>
-                                                <span>
-                                                    1 Month ago
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-x-4">
-                                    <div className="w-[223px] h-[135px]"><img src={liked1} className="w-full h-full" alt="" /></div>
-                                    <div className="flex flex-col gap-y-2 h-fit py-2 w-[220px]">
-                                        <p className="text-[13px] font-bold">Lorem Ipsimply dummy text um is simply dummy text of the printing </p>
-                                        <p className="text-[10px]">Lorem If the printing and typesettingpsum is f the printing and typesettingsimply.</p>
-                                        <div className="text-[10px] flex items-center justify-between">
-                                            <span className="font-semibold tracking-wider">Gameforall</span>
-                                            <div className="flex gap-x-2">
-                                                <span>
-                                                    532 views
-                                                </span>
-                                                <span>
-                                                    1 Month ago
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-x-4">
-                                    <div className="w-[223px] h-[135px]"><img src={liked1} className="w-full h-full" alt="" /></div>
-                                    <div className="flex flex-col gap-y-2 h-fit py-2 w-[220px]">
-                                        <p className="text-[13px] font-bold">Lorem Ipsimply dummy text um is simply dummy text of the printing </p>
-                                        <p className="text-[10px]">Lorem If the printing and typesettingpsum is f the printing and typesettingsimply.</p>
-                                        <div className="text-[10px] flex items-center justify-between">
-                                            <span className="font-semibold tracking-wider">Gameforall</span>
-                                            <div className="flex gap-x-2">
-                                                <span>
-                                                    532 views
-                                                </span>
-                                                <span>
-                                                    1 Month ago
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-x-4">
-                                    <div className="w-[223px] h-[135px]"><img src={liked1} className="w-full h-full" alt="" /></div>
-                                    <div className="flex flex-col gap-y-2 h-fit py-2 w-[220px]">
-                                        <p className="text-[13px] font-bold">Lorem Ipsimply dummy text um is simply dummy text of the printing </p>
-                                        <p className="text-[10px]">Lorem If the printing and typesettingpsum is f the printing and typesettingsimply.</p>
-                                        <div className="text-[10px] flex items-center justify-between">
-                                            <span className="font-semibold tracking-wider">Gameforall</span>
-                                            <div className="flex gap-x-2">
-                                                <span>
-                                                    532 views
-                                                </span>
-                                                <span>
-                                                    1 Month ago
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  // Available categories
+//   const categories = [
+//     { id: "all", name: "All" },
+//     { id: "music", name: "Music" },
+//     { id: "gaming", name: "Gaming" },
+//     { id: "news", name: "News" },
+//     { id: "movies", name: "Movies" },
+//     { id: "fashion", name: "Fashion & Beauty" },
+//   ]
+
+  // Simulate loading videos from an API
+  useEffect(() => {
+    const loadVideos = async () => {
+      setLoading(true)
+      // Simulate network delay
+      await new Promise((resolve) => setTimeout(resolve, 500))
+      setVideos(initialTrendingVideos)
+      setFilteredVideos(initialTrendingVideos)
+      setLoading(false)
+    }
+
+    loadVideos()
+  }, [])
+
+  // Handle category change
+  useEffect(() => {
+    if (activeCategory === "all") {
+      setFilteredVideos(videos)
+    } else {
+      const filtered = videos.filter((video) => video.category.toLowerCase() === activeCategory.toLowerCase())
+      setFilteredVideos(filtered)
+    }
+  }, [activeCategory, videos])
+
+  return (
+    <Layout title="Music">
+      {loading ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[...Array(9)].map((_, index) => (
+            <div key={index} className="flex flex-col gap-4">
+              <Skeleton height={180} className="rounded-xl" />
+              <div className="flex gap-2">
+                <Skeleton circle width={36} height={36} />
+                <div className="flex-1">
+                  <Skeleton height={20} width="90%" className="mb-2" />
+                  <Skeleton height={16} width="60%" className="mb-1" />
+                  <Skeleton height={16} width="40%" />
                 </div>
+              </div>
             </div>
+          ))}
         </div>
-    )
+      ) : (
+        <TrendingVideoList videos={filteredVideos} />
+      )}
+    </Layout>
+  )
 }
-
 
 export default MusicPage
