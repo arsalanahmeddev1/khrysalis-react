@@ -1,12 +1,10 @@
 import { Link } from 'react-router-dom'
-import { useContext, useState, useEffect } from 'react'
+import {useState, useEffect } from 'react'
 import Skeleton from "react-loading-skeleton"
-import MyContext from '../router/context'
 import { sideBarItems, settingItems } from '../data'
 
 const Sidebar = ({ collapsed, isSettingDashboard }) => {
   const [isLoading, setIsLoading] = useState(true)
-  const { data } = useContext(MyContext)
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 2000)
@@ -16,7 +14,7 @@ const Sidebar = ({ collapsed, isSettingDashboard }) => {
   return (
     <aside className={`${
       collapsed ? "w-20" : "w-64"
-    } bg-white dark:bg-[#0f0f0f] overflow-y-auto hidden md:block h-full pt-4`}>
+    } sidebar-wrapper`}>
       {isLoading ? (
         <div className="px-6">
           <Skeleton
@@ -64,7 +62,7 @@ const NavItem = ({ iconLight, iconDark, title, path, collapsed, isTextOnly }) =>
     to={path}
     className={`flex items-center w-full  ${
       collapsed ? "px-2 justify-center" : "px-6"
-    } py-2 hover:bg-[#272727] text-sm text-[#121212] dark:text-white`}
+    } nav-item`}
   >
     {!isTextOnly && (
       <>

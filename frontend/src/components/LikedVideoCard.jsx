@@ -59,28 +59,28 @@ const LikedVideoCard = ({
 
   return (
     <div
-      className={`video-card flex gap-4 group hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-lg transition-colors ${className}`}
+      className={`video-card-wrapper group  ${className}`}
     >
       {/* Thumbnail Section */}
       <div className="relative flex-shrink-0">
-        <a
-          href={`/watch?v=${video.id}`}
+        <Link
+          to={`/watch?v=${video.id}`}
           className={`block w-full md:w-80 aspect-video rounded-xl overflow-hidden ${thumbnailClassName}`}
         >
           <img src={video.thumbnail || "/placeholder.svg"} alt={video.title} className="w-full h-full object-cover" />
-          <div className="absolute bottom-1 right-1 bg-black bg-opacity-80 text-white text-xs px-1 py-0.5 rounded">
+          <div className="video-card-bottom-area">
             {formatDuration(video.duration)}
           </div>
-        </a>
+        </Link>
       </div>
 
       {/* Video Info Section */}
       <div className="flex-1 min-w-0">
         <div className="flex items-start">
           <div className="flex-1 min-w-0">
-            <a href={`/watch?v=${video.id}`} className="block">
-              <h3 className="text-base md:text-lg font-medium line-clamp-2 hover:underline">{video.title}</h3>
-            </a>
+            <Link to={`/watch?v=${video.id}`} className="block">
+              <h3 className="video-title">{video.title}</h3>
+            </Link>
             <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
               <Link to={`/channel/${video.channelId}`} className="hover:text-black dark:hover:text-white">
                 {video.channelName || video.channel}

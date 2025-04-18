@@ -8,7 +8,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'custom-purple': '#5213AA'
+        'theme-color': '#5213AA',
+        'gradient-start': '#1e3a8a',
+        'gradient-end': '#6b21a8',
+        
       }
     },
   },

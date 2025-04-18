@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { FaBell, FaRegBell, FaEllipsisV, FaCheck } from "react-icons/fa"
+import { Link } from "react-router-dom"
 
 const ChannelListItem = ({ channel, onUnsubscribe, onNotificationChange }) => {
   const [showOptions, setShowOptions] = useState(false)
@@ -43,16 +44,16 @@ const ChannelListItem = ({ channel, onUnsubscribe, onNotificationChange }) => {
   return (
     <div className="bg-[#1f1f1f] rounded-lg p-4 flex items-start group">
       {/* Channel Avatar */}
-      <a href={`/channel/${channel.id}`} className="block flex-shrink-0">
+      <Link to={`/channel/${channel.id}`} className="block flex-shrink-0">
         <img src={channel.avatar || "/placeholder.svg"} alt={channel.name} className="w-12 h-12 rounded-full" />
-      </a>
+      </Link>
 
       {/* Channel Info */}
       <div className="ml-4 flex-grow min-w-0">
         <div className="flex items-center justify-between">
-          <a href={`/channel/${channel.id}`} className="block">
+          <Link to={`/channel/${channel.id}`} className="block">
             <h3 className="font-medium text-white hover:text-blue-400">{channel.name}</h3>
-          </a>
+          </Link>
         </div>
 
         <div className="text-sm text-gray-400 mt-1">{channel.subscribers} subscribers</div>
@@ -65,12 +66,12 @@ const ChannelListItem = ({ channel, onUnsubscribe, onNotificationChange }) => {
           <div className="mt-2 text-sm">
             <div className="flex items-center">
               <span className="text-gray-400 mr-2">Last upload:</span>
-              <a
-                href={`/watch?v=${channel.lastUpload.videoId}`}
+              <Link
+                to={`/watch?v=${channel.lastUpload.videoId}`}
                 className="text-white hover:text-blue-400 line-clamp-1"
               >
                 {channel.lastUpload.title}
-              </a>
+              </Link>
               <span className="text-xs text-gray-500 ml-2">({channel.lastUpload.timeAgo})</span>
             </div>
           </div>
@@ -142,12 +143,12 @@ const ChannelListItem = ({ channel, onUnsubscribe, onNotificationChange }) => {
 
           {showOptions && (
             <div className="absolute right-0 top-10 bg-[#212121] rounded-lg shadow-lg z-10 w-48 py-2">
-              <a
-                href={`/channel/${channel.id}`}
+              <Link
+                to={`/channel/${channel.id}`}
                 className="flex items-center w-full px-4 py-2 text-sm text-left hover:bg-[#3a3a3a]"
               >
                 View channel
-              </a>
+              </Link>
               <button
                 className="flex items-center w-full px-4 py-2 text-sm text-left hover:bg-[#3a3a3a] text-red-500"
                 onClick={handleUnsubscribe}

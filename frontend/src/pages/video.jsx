@@ -11,7 +11,7 @@ import { VerifiedTick } from "../assets/svgs";
 import liked1 from "../assets/images/liked-1.png";
 import Button from "../components/button";
 import LineDivider from "../components/divider";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   useLikeVideoMutation,
   useVideoDetailQuery,
@@ -180,9 +180,9 @@ const VideoPage = () => {
                     <span className="text-[10px]">
                       Gaming World 171,532 views Aug 13, 2021{" "}
                     </span>
-                    <a href="#" className="font-bold text-[10px] uppercase">
+                    <Link to="#" className="font-bold text-[10px] uppercase">
                       ...More
-                    </a>
+                    </Link>
                   </div>
                   <LineDivider />
                   <div>

@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { FaBell, FaRegBell, FaEllipsisV, FaCheck } from "react-icons/fa"
+import { Link } from "react-router-dom"
 
 const ChannelCard = ({ channel, onUnsubscribe, onNotificationChange }) => {
   const [showOptions, setShowOptions] = useState(false)
@@ -55,13 +56,13 @@ const ChannelCard = ({ channel, onUnsubscribe, onNotificationChange }) => {
       <div className="p-4">
         <div className="flex items-start">
           {/* Channel Avatar */}
-          <a href={`/channel/${channel.id}`} className="block">
+          <Link to={`/channel/${channel.id}`} className="block">
             <img
               src={channel.avatar || "/placeholder.svg"}
               alt={channel.name}
               className="w-16 h-16 rounded-full border-4 border-[#1f1f1f] -mt-10"
             />
-          </a>
+          </Link>
 
           <div className="ml-auto flex items-center space-x-2">
             {/* Notification Bell */}
@@ -127,12 +128,12 @@ const ChannelCard = ({ channel, onUnsubscribe, onNotificationChange }) => {
 
               {showOptions && (
                 <div className="absolute right-0 top-10 bg-[#212121] rounded-lg shadow-lg z-10 w-48 py-2">
-                  <a
-                    href={`/channel/${channel.id}`}
+                  <Link
+                    to={`/channel/${channel.id}`}
                     className="flex items-center w-full px-4 py-2 text-sm text-left hover:bg-[#3a3a3a]"
                   >
                     View channel
-                  </a>
+                  </Link>
                   <button
                     className="flex items-center w-full px-4 py-2 text-sm text-left hover:bg-[#3a3a3a] text-red-500"
                     onClick={handleUnsubscribe}
@@ -147,21 +148,21 @@ const ChannelCard = ({ channel, onUnsubscribe, onNotificationChange }) => {
 
         {/* Channel Info */}
         <div className="mt-2">
-          <a href={`/channel/${channel.id}`} className="block">
+          <Link to={`/channel/${channel.id}`} className="block">
             <h3 className="font-medium text-white hover:text-blue-400">{channel.name}</h3>
-          </a>
+          </Link>
           <div className="text-sm text-gray-400 mt-1">{channel.subscribers} subscribers</div>
 
           {/* Last Upload */}
           {channel.lastUpload && (
             <div className="mt-2 text-sm">
               <div className="text-gray-400">Last upload:</div>
-              <a
-                href={`/watch?v=${channel.lastUpload.videoId}`}
+              <Link
+                to={`/watch?v=${channel.lastUpload.videoId}`}
                 className="text-white hover:text-blue-400 line-clamp-1"
               >
                 {channel.lastUpload.title}
-              </a>
+              </Link>
               <div className="text-xs text-gray-500">{channel.lastUpload.timeAgo}</div>
             </div>
           )}

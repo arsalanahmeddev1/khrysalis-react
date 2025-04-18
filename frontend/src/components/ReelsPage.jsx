@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 import { useInView } from "react-hook-inview"
 import Skeleton from "react-loading-skeleton"
-import "react-loading-skeleton/dist/skeleton.css"
 import ReactPlayer from "react-player"
 import {
   FaThumbsUp,
@@ -126,24 +125,12 @@ const ReelsPage = ({ fetchShorts }) => {
   return (
     <div
       ref={containerRef}
-      className="shorts-container w-full bg-black dark:bg-black overflow-y-auto max-w-[500px] mx-auto snap-y snap-mandatory scrollbar-hide"
+      className="shorts-container scrollbar-hidess"
       style={{
         height: "calc(100vh - 72px)",
         scrollbarWidth: "none" /* Firefox */,
       }}
     >
-      <style jsx global>{`
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        
-        /* Hide scrollbar for IE, Edge and Firefox */
-        .scrollbar-hide {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
-        }
-      `}</style>
 
       {loading ? (
         <div className="h-full w-full flex flex-col">
@@ -246,7 +233,7 @@ const Short = ({ short }) => {
   return (
     <div
       ref={ref}
-      className="short-item w-full relative snap-start snap-always"
+      className="short-item"
       style={{ height: "calc(100vh - 72px)" }}
       onClick={handleVideoClick}
     >
@@ -278,7 +265,7 @@ const Short = ({ short }) => {
       {/* Play/Pause button overlay */}
       {showControls && (
         <button
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white p-4 rounded-full bg-black/40 z-10"
+          className="playpause-btn"
           onClick={togglePlayPause}
         >
           {isPlaying ? (
@@ -343,9 +330,9 @@ const Short = ({ short }) => {
       )}
 
       {/* Video info overlay - YouTube Shorts style */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+      <div className="shorts-overlay-wrapper">
         <div className="flex flex-col">
-          <h3 className="text-white font-medium text-base mb-1">{short.title}</h3>
+          <h3 className="shorts-title">{short.title}</h3>
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <img
@@ -362,39 +349,39 @@ const Short = ({ short }) => {
       </div>
 
       {/* Action buttons - YouTube Shorts style */}
-      <div className="absolute right-4 bottom-24 flex flex-col items-center space-y-6">
-        <button className="text-white flex flex-col items-center" onClick={toggleLike}>
+      <div className="shorts-action-btns-wrapper">
+        <button className="shorts-action-btns" onClick={toggleLike}>
           {isLiked ? <FaThumbsUp className="text-2xl text-white" /> : <FaRegThumbsUp className="text-2xl" />}
           <span className="text-xs mt-1">{formatCount(short.likes)}</span>
         </button>
 
-        <button className="text-white flex flex-col items-center" onClick={toggleDislike}>
+        <button className="shorts-action-btns" onClick={toggleDislike}>
           {isDisliked ? <FaThumbsDown className="text-2xl text-white" /> : <FaRegThumbsDown className="text-2xl" />}
           <span className="text-xs mt-1">Dislike</span>
         </button>
 
-        <button className="text-white flex flex-col items-center" onClick={handleComment}>
+        <button className="shorts-action-btns" onClick={handleComment}>
           <FaComment className="text-2xl" />
           <span className="text-xs mt-1">{formatCount(short.comments)}</span>
         </button>
 
-        <button className="text-white flex flex-col items-center" onClick={handleShare}>
+        <button className="shorts-action-btns" onClick={handleShare}>
           <FaShare className="text-2xl" />
           <span className="text-xs mt-1">Share</span>
         </button>
 
-        <button className="text-white flex flex-col items-center">
+        <button className="shorts-action-btns">
           <FaEllipsisH className="text-2xl" />
         </button>
 
-        <div className="w-8 h-8 rounded-md overflow-hidden bg-white/10 backdrop-blur-sm">
+        <div className="channel-avatar-wrapper">
           <img src={short.channel.avatar || "/placeholder.svg"} alt="Audio" className="w-full h-full object-cover" />
         </div>
       </div>
 
       {/* Video controls */}
       {showControls && (
-        <button className="absolute bottom-24 left-4 text-white p-2 rounded-full bg-black/50" onClick={toggleMute}>
+        <button className="vol-mute-btn" onClick={toggleMute}>
           {isMuted ? <IoMdVolumeOff className="text-2xl" /> : <IoMdVolumeHigh className="text-2xl" />}
         </button>
       )}

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import MyContext from "../router/context";
-import { FaSearch, FaMicrophone } from "react-icons/fa"
+import { FaSearch } from "react-icons/fa"
 import logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import profile from "../assets/icons/profile.png";
@@ -40,19 +40,19 @@ const TopNavBar = ({onMenuClick }) => {
 
 
   return (
-    <header className="flex items-center justify-between px-4 py-2 bg-white dark:bg-black border-b border-[#272727] sticky top-0 z-10">
+    <header className="header">
       <div className="flex items-center">
-        <button className="p-2 mr-2 rounded-full bg-[#272727]" onClick={onMenuClick}>
+        <button className="menu-toggle-btn" onClick={onMenuClick}>
           <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current">
             <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
           </svg>
         </button>
-        <Link to={"/"} className="text-black dark:text-white">
+        <Link to={"/"} className="logo-wrapper">
           <img src={logo} alt="Logo" className="w-40" />
         </Link>
       </div>
 
-      <div className="flex items-center flex-grow max-w-[720px] mx-4">
+      <div className="header-search-wrapper">
         <form onSubmit={handleSubmit} className="flex items-center w-full">
           <div className="relative flex-grow">
             <input
@@ -60,25 +60,22 @@ const TopNavBar = ({onMenuClick }) => {
               placeholder="Search"
               value={localSearch}
               onChange={(e) => setLocalSearch(e.target.value)}
-              className="w-full px-4 py-2 bg-white dark:bg-[#121212] border border-[#c6c6c6]  dark:border-[#303030] rounded-l-full focus:outline-none focus:border-blue-500"
+              className="input-field"
             />
           </div>
           <button
             type="submit"
-            className="px-5 py-2 bg-[#f8f8f8] dark:bg-[#222222] border border-[#d3d3d3] dark:border-[#303030] rounded-r-full hover:bg-[#3a3a3a]"
+            className="header-search-submit-btn"
           >
             <FaSearch className="text-gray-400" />
-          </button>
-          <button type="button" className="p-2 ml-4 bg-[#f8f8f8] dark:bg-[#181818] rounded-full hover:bg-[#272727]">
-            <FaMicrophone className="text-[#181818] dark:text-white" />
           </button>
         </form>
       </div>
 
-      <div className="flex items-center gap-x-4">
+      <div className="auth-btn-wrapper">
         <Link
           to="/login"
-          className="py-[9px] text-white px-[12px] md:px-[20px] rounded-full bg-violet-700 flex items-center gap-2"
+          className="auth-link-wrapper"
         >
           <img src={profile} alt="Profile" />
           Sign In

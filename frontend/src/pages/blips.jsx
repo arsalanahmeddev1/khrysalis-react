@@ -56,7 +56,7 @@ const blips = () => {
 
 
   return (
-    <Layout>
+    <Layout noScroll className="!py-0">
       <ReelsPage fetchShorts={fetchShorts} />
     </Layout>
   )

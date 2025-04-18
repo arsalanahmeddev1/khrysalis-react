@@ -69,7 +69,7 @@ const History = () => {
   const groupedVideos = groupVideosByDate(filteredData)
 
   return (
-    <Layout>
+    <Layout title="History">
       <HistoryContent 
         groupedVideos={groupedVideos} 
         onRemoveVideo={handleRemoveVideo}

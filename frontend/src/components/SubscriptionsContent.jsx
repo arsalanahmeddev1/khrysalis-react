@@ -21,45 +21,6 @@ const SubscriptionsContent = ({ subscriptions, onUnsubscribe, onNotificationChan
 
   return (
     <>
-      {/* <div className="flex items-center justify-end mb-6">
-        <div className="flex items-center mt-2 sm:mt-0">
-          {showSearch ? (
-            <form onSubmit={handleSearchSubmit} className="flex items-center">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search subscriptions"
-                  value={localSearch}
-                  onChange={(e) => setLocalSearch(e.target.value)}
-                  className="px-4 py-1.5 bg-[#121212] border border-[#303030] rounded-full focus:outline-none focus:border-blue-500 w-48 sm:w-64"
-                  autoFocus
-                />
-                {localSearch && (
-                  <button
-                    type="button"
-                    onClick={handleClearSearch}
-                    className="absolute right-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
-                  >
-                    ✕
-                  </button>
-                )}
-              </div>
-              <button type="submit" className="ml-2 px-3 py-1.5 bg-[#272727] rounded-full text-sm">
-                <FaSearch />
-              </button>
-            </form>
-          ) : (
-            <button
-              onClick={() => setShowSearch(true)}
-              className="flex items-center px-3 py-1.5 bg-[#272727] rounded-full text-sm"
-            >
-              <FaSearch className="mr-2" />
-              Search
-            </button>
-          )}
-        </div>
-      </div> */}
-
       {subscriptions.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16">
           <div className="w-24 h-24 mb-4 flex items-center justify-center rounded-full bg-[#272727]">

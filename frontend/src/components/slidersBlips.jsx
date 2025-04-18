@@ -91,7 +91,7 @@ export default function Slider(props) {
           ))
           : data?.map((val, index) => (
             <SwiperSlide className="!bg-transparent relative" key={index}>
-              <a href={val?.link} className="flex flex-col gap-y-1">
+              <Link to={val?.link} className="flex flex-col gap-y-1">
                 <div className="relative">
                   {!props?.liveNews && (
                     <div className="w-full h-full flex justify-center items-center absolute">
@@ -173,7 +173,7 @@ export default function Slider(props) {
                     </div>
                   </div>
                 )}
-              </a>
+              </Link>
             </SwiperSlide>
           ))}
       </Swiper>

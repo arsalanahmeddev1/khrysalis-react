@@ -2,7 +2,7 @@ import Header from "../header"
 import Sidebar from "../Sidebar"
 import { useState } from "react"
 
-const Layout = ({ children, searchQuery, onSearchChange, title }) => {
+const Layout = ({ children, searchQuery, onSearchChange, title, className="max-w-[1560px]", noScroll=false }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
   const toggleSidebar = () => {
@@ -18,8 +18,8 @@ const Layout = ({ children, searchQuery, onSearchChange, title }) => {
       />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar collapsed={sidebarCollapsed} />
-        <main className="flex-1 overflow-y-auto">
-          <div className="max-w-[1560px] mx-auto py-[50px]">
+        <main className={`flex-1 ${!noScroll ? "overflow-y-auto" : ""}`}>
+          <div className={`${className} mx-auto py-[50px]`}>
             <h1 className="text-xl md:text-2xl font-bold mb-4 text-black dark:text-white">{title}</h1>
             {children}
           </div>

@@ -49,3 +49,26 @@ export const formatDuration = (seconds) => {
   }
   return `${minutes}:${secs.toString().padStart(2, '0')}`;
 };
+
+
+// Format subscriber count (e.g., 1,234,567 -> 1.23M)
+export const formatSubscriberCount = (count) => {
+  if (count >= 1000000) {
+    return (count / 1000000).toFixed(2).replace(/\.?0+$/, "") + "M"
+  }
+  if (count >= 1000) {
+    return (count / 1000).toFixed(1).replace(/\.0$/, "") + "K"
+  }
+  return count.toString()
+}
+
+
+// Format date (e.g., "2023-05-15T14:32:00" -> "May 15, 2023")
+export const formatDate = (dateString) => {
+  const date = new Date(dateString)
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  })
+}

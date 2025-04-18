@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import MyContext from "../router/context";
 import Slider from "react-slick";
-import { Header, CustomSlider, Sidebar } from "../components";
+import {CustomSlider } from "../components";
 import { blipsIcon, video1, video2, video3, video4 } from "../assets/images";
 import LiveSlider from "../components/liveslider";
 import SlidersBlips from "../components/slidersBlips";
@@ -15,17 +15,11 @@ import Layout from "../components/Layouts/Layout";
 
 // import Sidebar from "../components/Sidebar";
 const HomePage = () => {
-  const { searchQuery, setSearchQuery } = useContext(MyContext);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [loading, setLoading] = useState(true);
   const categories = [
     "All", "Trending", "Live", "Gaming", "Music", "Travel",
     "Sports", "Animation", "Gameplay", "Streaming", "Camping", "Cast",
   ];
-
-  const toggleSidebar = () => {
-    setSidebarCollapsed(!sidebarCollapsed)
-  }
 
 
   const settings = {
@@ -93,9 +87,7 @@ const HomePage = () => {
           {categories.map((item, index) => (
             <div key={index} className="text-center px-2">
               <div
-                className="category-item cursor-pointer bg-gray-700 rounded 
-          text-xs md:text-sm lg:text-base 
-          py-1 text-center"
+                className="category-item"
               >
                 {item}
               </div>

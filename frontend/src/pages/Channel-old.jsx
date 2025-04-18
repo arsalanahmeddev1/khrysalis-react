@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 
 const dummyVideos = Array.from({ length: 8 }).map((_, i) => ({
   id: i,
