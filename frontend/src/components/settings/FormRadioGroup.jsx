@@ -14,7 +14,7 @@ const FormRadioGroup = ({ label, name, value, onChange, options, helpText }) => 
                 type="radio"
                 checked={value === option.value}
                 onChange={() => onChange(name, option.value)}
-                className="w-4 h-4 text-red-600 border-gray-300 focus:ring-red-500 dark:bg-gray-700 dark:border-gray-600"
+                className="w-4 h-4 text-theme-color border-gray-300 focus:ring-theme-color dark:bg-gray-700 dark:border-gray-600"
               />
             </div>
             <div className="ml-3 text-sm">

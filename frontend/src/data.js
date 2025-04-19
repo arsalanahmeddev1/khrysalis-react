@@ -98,7 +98,7 @@ export const sideBarItems = [
       title: "help",
       iconLight: help,
       iconDark: helpDark,
-      path: "/help-notification"
+      path: "/help"
     }, {
       title: "send feedback",
       iconLight: feedback,
@@ -187,7 +187,7 @@ export const streamData = [
 export const initialHistoryData = [
   {
     id: "dQw4w9WgXcQ",
-    title: "Building a YouTube Clone with React and Tailwind CSS - Full Tutorial",
+    title: "Building a Khrysalis Clone with React and Tailwind CSS - Full Tutorial",
     thumbnail: "https://i.ytimg.com/vi/dQw4w9WgXcQ/mqdefault.jpg",
     channel: "Web Dev Simplified",
     channelId: "UC-T8W79DN6PBnzomelvqJYw",

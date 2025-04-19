@@ -45,7 +45,7 @@ export const getVideoData = (videoId) => {
           "https://yt3.googleusercontent.com/ytc/APkrFKYcYswt_UhD7D0j6ddiQz6Gb8Q_vSJOjhYI0CoXSw=s176-c-k-c0x00ffffff-no-rj",
         authorChannelId: "UC567891234",
         textDisplay:
-          "Fun fact: This video was uploaded to YouTube in 2009, but the song was released in 1987. It's amazing how internet culture gave it a second life decades later.",
+          "Fun fact: This video was uploaded to Khrysalis in 2009, but the song was released in 1987. It's amazing how internet culture gave it a second life decades later.",
         publishedAt: "2022-08-05T15:45:12Z",
         likeCount: 12543,
       },

@@ -58,7 +58,7 @@ const ConnectedAppsPage = () => {
                                 </div>
                                 <div className="mt-6">
                                     <p className="font-bold text-[15px]">Expand your experience</p>
-                                    <p className="text-[13px] font-medium mt-2">Connect YouTube with other apps and watch more easily</p>
+                                    <p className="text-[13px] font-medium mt-2">Connect Khrysalis with other apps and watch more easily</p>
                                 </div>
                             </div>
 

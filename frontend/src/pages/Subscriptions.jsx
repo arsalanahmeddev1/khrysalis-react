@@ -14,7 +14,7 @@ const Subscriptions = () => {
   // Load initial data
   useEffect(() => {
     // Check if we have data in localStorage
-    const savedSubscriptions = localStorage.getItem("youtubeSubscriptions")
+    const savedSubscriptions = localStorage.getItem("KhrysalisSubscriptions")
     if (savedSubscriptions) {
       const parsedData = JSON.parse(savedSubscriptions)
       setSubscriptions(parsedData)
@@ -24,7 +24,7 @@ const Subscriptions = () => {
       setSubscriptions(initialSubscriptionsData)
       setFilteredSubscriptions(initialSubscriptionsData)
       // Save to localStorage
-      localStorage.setItem("youtubeSubscriptions", JSON.stringify(initialSubscriptionsData))
+      localStorage.setItem("KhrysalisSubscriptions", JSON.stringify(initialSubscriptionsData))
     }
   }, [])
 
@@ -49,7 +49,7 @@ const Subscriptions = () => {
     setFilteredSubscriptions(updatedSubscriptions)
 
     // Update localStorage
-    localStorage.setItem("youtubeSubscriptions", JSON.stringify(updatedSubscriptions))
+    localStorage.setItem("KhrysalisSubscriptions", JSON.stringify(updatedSubscriptions))
   }
 
   // Handle notification settings change
@@ -65,7 +65,7 @@ const Subscriptions = () => {
     setFilteredSubscriptions(updatedSubscriptions)
 
     // Update localStorage
-    localStorage.setItem("youtubeSubscriptions", JSON.stringify(updatedSubscriptions))
+    localStorage.setItem("KhrysalisSubscriptions", JSON.stringify(updatedSubscriptions))
   }
 
   // Handle search query change

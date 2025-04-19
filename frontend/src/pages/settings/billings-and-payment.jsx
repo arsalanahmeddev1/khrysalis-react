@@ -20,13 +20,13 @@ const BillingsAndPaymentPage = () => {
                         </div>
                         <div className="w-[86%] text-white-false">
                             <h1 className="font-semibold text-[25px] mt-4 text-white-false leading-none">Billing and payments</h1>
-                            <p className="text-[15px] font-bold mt-12">Choose how you make purchases on YouTube</p>
+                            <p className="text-[15px] font-bold mt-12">Choose how you make purchases on Khrysalis</p>
 
                             <LineDivider/>
 
                             <div className="">
                                 <p className="text-[15px] font-bold">Quick purchase is disabled.</p>
-                                <p className="font-medium text-[13px] mt-2">You will be asked to verify your account for all YouTube purchasesLearn more about purchase verification</p>
+                                <p className="font-medium text-[13px] mt-2">You will be asked to verify your account for all Khrysalis purchasesLearn more about purchase verification</p>
                             </div>
 
 

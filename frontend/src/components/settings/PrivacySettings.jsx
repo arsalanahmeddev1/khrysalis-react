@@ -43,7 +43,7 @@ const PrivacySettings = () => {
           <ToggleSwitch
             id="keepHistoryPaused"
             label="Keep history paused"
-            description="YouTube won't save your watch and search history while this is turned on"
+            description="Khrysalis won't save your watch and search history while this is turned on"
             checked={settings.keepHistoryPaused}
             onChange={() => handleToggle("keepHistoryPaused")}
           />
@@ -51,7 +51,7 @@ const PrivacySettings = () => {
           <ToggleSwitch
             id="pauseWatchHistory"
             label="Pause watch history"
-            description="YouTube won't remember what videos you've watched"
+            description="Khrysalis won't remember what videos you've watched"
             checked={settings.pauseWatchHistory}
             onChange={() => handleToggle("pauseWatchHistory")}
             disabled={settings.keepHistoryPaused}
@@ -60,7 +60,7 @@ const PrivacySettings = () => {
           <ToggleSwitch
             id="pauseSearchHistory"
             label="Pause search history"
-            description="YouTube won't remember what you search for"
+            description="Khrysalis won't remember what you search for"
             checked={settings.pauseSearchHistory}
             onChange={() => handleToggle("pauseSearchHistory")}
             disabled={settings.keepHistoryPaused}
@@ -116,7 +116,7 @@ const PrivacySettings = () => {
           <ToggleSwitch
             id="adPersonalization"
             label="Ad personalization"
-            description="Allow YouTube to show you personalized ads based on your activity"
+            description="Allow Khrysalis to show you personalized ads based on your activity"
             checked={settings.adPersonalization}
             onChange={() => handleToggle("adPersonalization")}
           />
@@ -138,7 +138,7 @@ const PrivacySettings = () => {
       <SettingsSection title="Data download">
         <div className="space-y-4">
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            You can download a copy of all your YouTube data, including your videos, comments, and more.
+            You can download a copy of all Your Khrysalis data, including your videos, comments, and more.
           </p>
           <FormButton variant="secondary">Download your data</FormButton>
         </div>

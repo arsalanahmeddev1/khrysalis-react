@@ -29,7 +29,7 @@ const blips = () => {
               avatar: "https://randomuser.me/api/portraits/men/54.jpg",
               subscribers: "567K",
             },
-            title: `Check out this awesome content! Page ${page} #shorts #youtube`,
+            title: `Check out this awesome content! Page ${page} #shorts #Khrysalis`,
             likes: Math.floor(Math.random() * 100000),
             dislikes: Math.floor(Math.random() * 5000),
             comments: Math.floor(Math.random() * 10000),

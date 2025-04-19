@@ -29,7 +29,7 @@ const AccountSettings = () => {
     <div>
       <h1 className="text-2xl font-bold mb-6">Account</h1>
 
-      <SettingsSection title="Your YouTube channel">
+      <SettingsSection title="Your Khrysalis channel">
         <form onSubmit={handleSave} className="space-y-4">
           <FormInput
             label="Name"
@@ -108,7 +108,7 @@ const AccountSettings = () => {
           <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
             <h3 className="font-medium mb-2">Delete channel</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-              Permanently delete your YouTube channel and all your content
+              Permanently delete Your Khrysalis channel and all your content
             </p>
             <FormButton variant="danger">Delete channel</FormButton>
           </div>
@@ -116,7 +116,7 @@ const AccountSettings = () => {
           <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
             <h3 className="font-medium mb-2">Download your data</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-              Get a copy of your YouTube data, including your videos, comments, and more
+              Get a copy of Your Khrysalis data, including your videos, comments, and more
             </p>
             <FormButton variant="secondary">Download data</FormButton>
           </div>

@@ -7,7 +7,7 @@ import profileBlips from "../assets/icons/blips-profile.png";
 import profile from "../assets/icons/profile.png";
 import adminIcon from "../assets/icons/icon _user_admin.png";
 import calendarImg from "../assets/icons/icon _calendar.png";
-import { useAllVideosQuery } from "../redux/features/video";
+// import { useAllVideosQuery } from "../redux/features/video";
 import moment from "moment";
 
 import "swiper/css";
@@ -16,22 +16,22 @@ import "swiper/css/pagination";
 const upload_url = process.env.REACT_APP_ASSET_URL;
 
 export default function Slider(props) {
-  const { data: videos, isLoading } = useAllVideosQuery();
+  // const { data: videos, isLoading } = ();
   const [data, setData] = useState([]);
   
   useEffect(() => {
     setData(props?.data);
   }, [props.data]);
 
-  if (!videos?.video || videos.video.length === 0) {
-    return <div className="text-black dark:text-white">No videos available</div>;
-  }
+  // if (!videos?.video || videos.video.length === 0) {
+  //   return <div className="text-black dark:text-white">No videos available</div>;
+  // }
 
   
 
   return (
     <>
-      {(isLoading && <div>Loading...</div>) || (
+      {/* {(isLoading && <div>Loading...</div>) || (
         <Swiper
           slidesPerView={props?.blips ? 4 : 4}
           spaceBetween={30}
@@ -133,7 +133,7 @@ export default function Slider(props) {
             );
           })}
         </Swiper>
-      )}
+      )} */}
     </>
   );
 }

@@ -14,7 +14,7 @@ const VideoPlayer = ({ loading, videoData }) => {
     <div className="w-full aspect-video bg-black rounded-lg overflow-hidden">
       <iframe
         className="w-full h-full"
-        src={`https://www.youtube.com/embed/${videoData.id}?autoplay=1`}
+        src={`https://www.Khrysalis.com/embed/${videoData.id}?autoplay=1`}
         title={videoData.title}
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

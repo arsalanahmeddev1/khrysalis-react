@@ -329,7 +329,7 @@ const Short = ({ short }) => {
         </div>
       )}
 
-      {/* Video info overlay - YouTube Shorts style */}
+      {/* Video info overlay - Khrysalis Shorts style */}
       <div className="shorts-overlay-wrapper">
         <div className="flex flex-col">
           <h3 className="shorts-title">{short.title}</h3>
@@ -348,7 +348,7 @@ const Short = ({ short }) => {
         </div>
       </div>
 
-      {/* Action buttons - YouTube Shorts style */}
+      {/* Action buttons - Khrysalis Shorts style */}
       <div className="shorts-action-btns-wrapper">
         <button className="shorts-action-btns" onClick={toggleLike}>
           {isLiked ? <FaThumbsUp className="text-2xl text-white" /> : <FaRegThumbsUp className="text-2xl" />}

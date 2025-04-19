@@ -1,11 +1,11 @@
 import {useContext, useState, useEffect } from "react"
 import { initialHistoryData } from "../data";
-import MyContext from "../router/context";
+import SearchContext from "../contexts/SearchContext";
 import HistoryContent from "../components/HistoryContent"
 import Layout from "../components/Layouts/Layout"
 
 const History = () => {
-  const { searchQuery, setSearchQuery } = useContext(MyContext);
+  const { searchQuery, setSearchQuery } = useContext(SearchContext);
   const [historyData, setHistoryData] = useState([])
   const [filteredData, setFilteredData] = useState([])
   // const [searchQuery, setSearchQuery] = useState("")

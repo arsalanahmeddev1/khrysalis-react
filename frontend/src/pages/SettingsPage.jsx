@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom"
 import Layout from "../components/Layouts/Layout"

@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useRef, useEffect } from "react"
 import { formatTimeAgo, formatViewCount, formatDuration } from "../utils/formatters"
 import Button from "../components/button"

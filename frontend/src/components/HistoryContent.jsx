@@ -41,11 +41,7 @@ const HistoryContent = ({ groupedVideos, onRemoveVideo, searchQuery }) => {
                   }}
                   onRemove={() => onRemoveVideo(video.id)}
                   removeFromLikedVideos="Remove from history"
-                  // Savetoplaylist="Save to playlist"
-                  // share="Share"
-                  // addToQueue="Add to queue"
-                  // notInterested="Not interested"
-                  isHistoryItem={true} // Flag to indicate this is a history item
+                  isHistoryItem={true}
                 />
               ))}
             </div>
