@@ -45,7 +45,6 @@ import GamingPage from "../pages/GamingPage";
 import WatchPage from "../pages/WatchPage";
 import SettingsPage from "../pages/SettingsPage";
 import Help from "../pages/Help";
-<<<<<<< HEAD
 
 // Studio Pages
 import CreateChannel from "../pages/CreateChannel"
@@ -56,10 +55,8 @@ import Comments from "../pages/studio/Comments"
 import Customization from "../pages/studio/Customization"
 import UploadVideo from "../pages/studio/UploadVideo"
 import UploadShort from "../pages/studio/UploadShort"
-=======
 import NewPage from "../pages/NewPage";
 import GridPage from "../pages/GridPage";
->>>>>>> dfae98e15f0b0524d73a43b163ce0ae33e9870ec
 
 const AppRouter = () => {
   const routes = [
