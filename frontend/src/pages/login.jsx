@@ -1,7 +1,7 @@
 import Header from "../components/header";
 import logo from "../assets/images/logo-2.png";
 import { Link } from "react-router-dom";
-import { useAlert } from "react-alert";
+// import { useAlert } from "react-alert";
 import { useLoginUserMutation } from "../redux/features/auth";
 import { useEffect, useState } from "react";
 
@@ -11,7 +11,7 @@ const initialInput = {
 };
 
 const LoginPage = () => {
-  const alert = useAlert();
+  // const alert = useAlert();
 
   const [loginUser, { isLoading, isError, error, isSuccess }] =
     useLoginUserMutation();

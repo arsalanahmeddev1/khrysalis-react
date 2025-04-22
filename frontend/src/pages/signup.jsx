@@ -3,7 +3,7 @@ import Header from "../components/header";
 import logo from "../assets/images/logo-2.png";
 import { Link } from "react-router-dom";
 import { useRegisterUserMutation } from "../redux/features/auth";
-import { useAlert } from "react-alert";
+// import { useAlert } from "react-alert";
 
 const initialInput = {
   name: "",
@@ -12,7 +12,7 @@ const initialInput = {
 };
 
 const LoginPage = () => {
-  const alert = useAlert();
+  // const alert = useAlert();
   const [registerUser, { isLoading, isError, error, isSuccess }] =
     useRegisterUserMutation();
 

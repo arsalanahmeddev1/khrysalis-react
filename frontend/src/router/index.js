@@ -30,8 +30,8 @@ import SubscriptionCommunityPage from "../pages/subscription/community";
 import SubscriptionChannelPage from "../pages/subscription/channel";
 import SubscriptionAboutPage from "../pages/subscription/about";
 import Trending from "../pages/Trending";
-import FeedbackPage from "../pages/Feedback";
-import CopyRightPage from "../pages/CopyRight";
+// import FeedbackPage from "../pages/Feedback";
+// import CopyRightPage from "../pages/CopyRight";
 import LiveStreamPage from "../pages/live-streaming";
 import VideoPage from "../pages/video";
 import HistoryPage from "../pages/History";
@@ -45,6 +45,7 @@ import GamingPage from "../pages/GamingPage";
 import WatchPage from "../pages/WatchPage";
 import SettingsPage from "../pages/SettingsPage";
 import Help from "../pages/Help";
+<<<<<<< HEAD
 
 // Studio Pages
 import CreateChannel from "../pages/CreateChannel"
@@ -55,10 +56,16 @@ import Comments from "../pages/studio/Comments"
 import Customization from "../pages/studio/Customization"
 import UploadVideo from "../pages/studio/UploadVideo"
 import UploadShort from "../pages/studio/UploadShort"
+=======
+import NewPage from "../pages/NewPage";
+import GridPage from "../pages/GridPage";
+>>>>>>> dfae98e15f0b0524d73a43b163ce0ae33e9870ec
 
 const AppRouter = () => {
   const routes = [
     { path: "/", element: <HomePage /> },
+    { path: "/newpage", element: <NewPage /> },
+    { path: "/gridPage", element: <GridPage /> },
     { path: "/settings/*", element: <SettingsPage /> },
     { path: "/channel/:channelId", element: <ChannelPage /> },
     { path: "/watch", element: <WatchPage /> },
@@ -67,14 +74,14 @@ const AppRouter = () => {
     { path: "/Trending", element: <Trending /> },
     { path: "/news", element: <NewsPage /> },
     { path: "/channel/video-upload", element: <VideoUploadPage /> },
-    { path: "/video/:id", element: <VideoPage /> },
+    { path: "/watch", element: <VideoPage /> },
     { path: "/Subscriptions", element: <Subscriptions /> },
     { path: "/library", element: <LibraryPage /> },
     { path: "/liked", element: <LikedPage /> },
     { path: "/music", element: <MusicPage /> },
     { path: "/podcast", element: <PodcastPage /> },
-    { path: "/feedback", element: <FeedbackPage /> },
-    { path: "/copyright", element: <CopyRightPage /> },
+    // { path: "/feedback", element: <FeedbackPage /> },
+    // { path: "/copyright", element: <CopyRightPage /> },
     { path: "/history", element: <HistoryPage /> },
     { path: "/live-stream", element: <LiveStreamPage /> },
     { path: "/channel/main", element: <ChannelMainPage /> },

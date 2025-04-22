@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from 'react-router-dom';
 import Header from "../components/header";
 import blipsIcon from "../assets/icons/blips.png";
 import downloadIcon from "../assets/icons/download.png";
@@ -29,6 +30,9 @@ import { useSubscribeChannelMutation } from "../redux/features/channel";
 const upload_url = process.env.REACT_APP_ASSET_URL;
 
 const VideoPage = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const videoId = queryParams.get('v');
   const [commentState, setCommentState] = useState("");
   const [reply, setReply] = useState();
   const { id } = useParams();
@@ -82,6 +86,7 @@ const VideoPage = () => {
 
   return (
     <div className="bg-black-false pb-20 min-h-screen text-white-false">
+      <p>Playing video with ID: {videoId}</p>
       <div className="max-w-screen-xl m-auto">
         <Header />
         <div className="px-4">
