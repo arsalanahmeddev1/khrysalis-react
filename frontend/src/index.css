@@ -46,7 +46,7 @@
   }
 
   .header-search-wrapper {
-    @apply flex items-center flex-grow max-w-[720px] mx-4
+    @apply flex  items-center flex-grow max-w-[720px] mx-auto
   }
 
   .input-field {
@@ -66,7 +66,7 @@
   }
 
   .nav-item {
-    @apply py-2 hover:bg-[#272727] hover:text-white text-sm text-[#121212] dark:text-white
+    @apply py-2 hover:bg-[#272727] hover:text-black text-sm text-[#121212] dark:text-white
   }
 
   .category-item {
@@ -103,7 +103,7 @@
     @apply absolute bottom-24 left-4 text-white p-2 rounded-full bg-black/50
   }
   .video-card-wrapper {
-    @apply flex gap-4  hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-lg transition-colors
+    @apply flex  gap-4  hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-lg transition-colors
   }
   .video-card-inner {
     @apply block w-full md:w-80 aspect-video rounded-xl overflow-hidden

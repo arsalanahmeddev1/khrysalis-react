@@ -113,13 +113,13 @@ const AccountSettings = () => {
             <FormButton variant="danger">Delete channel</FormButton>
           </div>
 
-          <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+          {/* <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
             <h3 className="font-medium mb-2">Download your data</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
               Get a copy of Your Khrysalis data, including your videos, comments, and more
             </p>
             <FormButton variant="secondary">Download data</FormButton>
-          </div>
+          </div> */}
         </div>
       </SettingsSection>
     </div>

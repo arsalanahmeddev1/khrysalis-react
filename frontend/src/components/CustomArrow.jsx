@@ -2,7 +2,7 @@ const CustomArrow = ({ onClick, direction, darkMode = true }) => {
   return (
     <button
       onClick={onClick}
-      className={`absolute top-1/2 z-10 w-7 h-7 flex items-center justify-center rounded-full transform -translate-y-1/2
+      className={`absolute top-1/2 z-10 w-7 bg-gray-700 dark:bg-transparent dark:hover:bg-gray-700 h-7 flex items-center justify-center rounded-full transform -translate-y-1/2
         ${darkMode ? 
           'hover:bg-gray-700 text-white' : 
           'hover:bg-gray-300 text-gray-800'

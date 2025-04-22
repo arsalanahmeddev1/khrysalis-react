@@ -4,6 +4,7 @@ import TrendingVideoList from "../components/TrendingVideoList";
 import CategoryTabs from "../components/CategoryTabs";
 import { initialTrendingVideos } from "../data";
 import Skeleton from "react-loading-skeleton";
+import InnerBanner from "../components/InnerBanner";
 
 const MusicPage = () => {
   const [videos, setVideos] = useState([])
@@ -47,6 +48,7 @@ const MusicPage = () => {
 
   return (
     <Layout title="Music">
+      <InnerBanner loading={loading} title={"Music"} description={"Live streams, walkthroughs, reviews, and more from your favorite gaming creators"} />
       {loading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(9)].map((_, index) => (

@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Layout from "../components/Layouts/Layout";
-import GamingHero from "../components/gaming/GamingHero";
 import GamingCategoryTabs from "../components/gaming/GamingCategoryTabs";
 import GamingVideoGrid from "../components/gaming/GamingVideoGrid";
 import { getGamingVideos } from "../gamingData";
+import InnerBanner from "../components/InnerBanner";
 
 const GamingPage = () => {
   const [loading, setLoading] = useState(true)
@@ -62,7 +62,7 @@ const GamingPage = () => {
     <Layout title="Gaming">
       <div className="gaming-page">
         {/* Hero Section */}
-        <GamingHero loading={loading} />
+        <InnerBanner loading={loading} title={"Gaming"} description={"Live streams, walkthroughs, reviews, and more from your favorite gaming creators"} />
 
         {/* Category Tabs */}
         <div className="sticky top-0 z-10 bg-white dark:bg-gray-900 py-2 border-b border-gray-200 dark:border-gray-800">

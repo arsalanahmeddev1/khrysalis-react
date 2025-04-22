@@ -12,11 +12,12 @@ const VideoList = ({ videos, onRemoveVideo }) => {
           removeFromLikedVideos="Remove from liked videos"
           Savetoplaylist="Save to playlist"
           share="Share"
-          addToQueue="Add to queue"
+          // addToQueue="Add to queue"
           notInterested="Not interested"
           key={video.id}
           video={video}
           onRemove={() => onRemoveVideo(video.id)}
+          className={"flex-col md:flex-row"}
         />
       ))}
     </div>

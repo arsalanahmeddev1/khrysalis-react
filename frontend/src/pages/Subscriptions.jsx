@@ -2,14 +2,14 @@
 
 import { useState, useEffect, useContext } from "react"
 import { initialSubscriptionsData } from "../data"
-import MyContext from "../router/context"
 import SubscriptionsContent from "../components/SubscriptionsContent"
 import Layout from "../components/Layouts/Layout"
+import SearchContext from "../contexts/SearchContext"
 
 const Subscriptions = () => {
   const [subscriptions, setSubscriptions] = useState([])
   const [filteredSubscriptions, setFilteredSubscriptions] = useState([])
-  const { searchQuery, setSearchQuery } = useContext(MyContext)
+  const { searchQuery, setSearchQuery } = useContext(SearchContext)
 
   // Load initial data
   useEffect(() => {

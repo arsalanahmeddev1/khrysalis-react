@@ -41,11 +41,11 @@ const SettingsPage = () => {
   const settingsCategories = [
     { id: "account", label: "Account", path: "/settings/account", icon: "user" },
     { id: "notifications", label: "Notifications", path: "/settings/notifications", icon: "bell" },
-    { id: "privacy", label: "Privacy", path: "/settings/privacy", icon: "shield" },
+    // { id: "privacy", label: "Privacy", path: "/settings/privacy", icon: "shield" },
     { id: "playback", label: "Playback and performance", path: "/settings/playback", icon: "play" },
-    { id: "appearance", label: "Appearance", path: "/settings/appearance", icon: "monitor" },
-    { id: "downloads", label: "Downloads", path: "/settings/downloads", icon: "download" },
-    { id: "advanced", label: "Advanced settings", path: "/settings/advanced", icon: "settings" },
+    // { id: "appearance", label: "Appearance", path: "/settings/appearance", icon: "monitor" },
+    // { id: "downloads", label: "Downloads", path: "/settings/downloads", icon: "download" },
+    // { id: "advanced", label: "Advanced settings", path: "/settings/advanced", icon: "settings" },
   ]
 
   // Redirect to account settings if on /settings
@@ -110,7 +110,7 @@ const SettingsPage = () => {
                   <Route path="/notifications" element={<NotificationSettings />} />
                   <Route path="/privacy" element={<PrivacySettings />} />
                   <Route path="/playback" element={<PlaybackSettings />} />
-                  <Route path="/appearance" element={<AppearanceSettings />} />
+                  {/* <Route path="/appearance" element={<AppearanceSettings />} /> */}
                   <Route path="/downloads" element={<DownloadsSettings />} />
                   <Route path="/advanced" element={<AdvancedSettings />} />
                 </Routes>

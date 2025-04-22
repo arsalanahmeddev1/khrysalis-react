@@ -1,27 +1,14 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import ThemeContext from "../contexts/ThemeContext";
-import SearchContext from "../contexts/SearchContext";
-import { FaSearch } from "react-icons/fa"
 import logo from "../assets/images/logo.png"
 import { Link } from "react-router-dom"
 import profile from "../assets/icons/profile.png"
 import { CiBrightnessUp } from "react-icons/ci"
 import { MdDarkMode } from "react-icons/md"
+import SearchBar from "./SearchBar";
 
 const TopNavBar = ({ onMenuClick }) => {
-  const { searchQuery, setSearchQuery } = useContext(SearchContext);
   const { isDarkMode, toggleDarkMode  } = useContext(ThemeContext);
-  const [localSearch, setLocalSearch] = useState(searchQuery || "")
-
-  useEffect(() => {
-    setLocalSearch(searchQuery || "")
-  }, [searchQuery])
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setSearchQuery(localSearch)
-  }
-
   return (
     <header className="header">
       <div className="flex items-center">
@@ -50,32 +37,17 @@ const TopNavBar = ({ onMenuClick }) => {
         </Link>
       </div>
 
-      <div className="header-search-wrapper">
-        <form onSubmit={handleSubmit} className="flex items-center w-full">
-          <div className="relative flex-grow">
-            <input
-              type="text"
-              placeholder="Search"
-              value={localSearch}
-              onChange={(e) => setLocalSearch(e.target.value)}
-              className="input-field"
-            />
-          </div>
-          <button type="submit" className="header-search-submit-btn">
-            <FaSearch className="text-gray-400" />
-          </button>
-        </form>
-      </div>
+      <SearchBar className="hidden lg:flex"/>
 
       <div className="auth-btn-wrapper">
-        <Link to="/login" className="auth-link-wrapper">
+        <Link to="" className="auth-link-wrapper">
           <img src={profile} alt="Profile" />
           Sign In
         </Link>
         {/* <button className="w-8 h-8 ml-2 rounded-full bg-purple-600 flex items-center justify-center">
           <span className="font-medium text-sm">A</span>
         </button> */}
-        <button onClick={toggleDarkMode}>
+        <button onClick={toggleDarkMode} className="hidden lg:block">
           {isDarkMode ? <CiBrightnessUp color="#fff" size={32} /> : <MdDarkMode color="#000" size={32} />}
         </button>
       </div>

@@ -58,17 +58,17 @@ const NotificationSettings = () => {
             onChange={() => handleToggle("recommended")}
           />
 
-          <ToggleSwitch
+          {/* <ToggleSwitch
             id="activitySharing"
             label="Activity sharing"
             description="Notify me when my activity is shared with others"
             checked={settings.activitySharing}
             onChange={() => handleToggle("activitySharing")}
-          />
+          /> */}
         </div>
       </SettingsSection>
 
-      <SettingsSection title="Interactions">
+      {/* <SettingsSection title="Interactions">
         <div className="space-y-6">
           <ToggleSwitch
             id="mentions"
@@ -86,7 +86,7 @@ const NotificationSettings = () => {
             onChange={() => handleToggle("replies")}
           />
         </div>
-      </SettingsSection>
+      </SettingsSection> */}
 
       <SettingsSection title="Channel notifications">
         <div className="space-y-6">
@@ -116,7 +116,7 @@ const NotificationSettings = () => {
         </div>
       </SettingsSection>
 
-      <SettingsSection title="Notification delivery">
+      {/* <SettingsSection title="Notification delivery">
         <div className="space-y-6">
           <ToggleSwitch
             id="emailNotifications"
@@ -143,7 +143,7 @@ const NotificationSettings = () => {
             disabled={!settings.emailNotifications}
           />
         </div>
-      </SettingsSection>
+      </SettingsSection> */}
     </div>
   )
 }

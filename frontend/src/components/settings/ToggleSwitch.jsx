@@ -1,18 +1,21 @@
-"use client"
-
 const ToggleSwitch = ({ id, label, description, checked, onChange, disabled = false }) => {
   return (
     <div className="flex items-start">
-      <div className="flex items-center h-5">
+      <label className="relative inline-flex items-center cursor-pointer">
         <input
-          id={id}
           type="checkbox"
-          className="w-10 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 appearance-none relative cursor-pointer"
+          id={id}
+          className="sr-only peer"
           checked={checked}
           onChange={onChange}
           disabled={disabled}
         />
-      </div>
+        <div className={`w-[44px] h-[22px] rounded-full peer peer-focus:outline-none transition-colors duration-300
+          ${disabled ? 'bg-gray-300' : 'bg-gray-200 dark:bg-gray-700  bg-gradient-to-r peer-checked:from-gradient-start peer-checked:to-gradient-end'}`}>
+          <div className={`absolute top-0.5 left-0.5 w-[17px] h-[17px] bg-white rounded-full shadow-md transform transition-transform duration-300
+            ${checked ? 'translate-x-5' : ''}`}></div>
+        </div>
+      </label>
       <div className="ms-3 text-sm">
         <label
           htmlFor={id}
@@ -32,4 +35,4 @@ const ToggleSwitch = ({ id, label, description, checked, onChange, disabled = fa
   )
 }
 
-export default ToggleSwitch
+export default ToggleSwitch;

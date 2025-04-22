@@ -61,7 +61,7 @@ const GamingVideoGrid = ({ videos, loading }) => {
             Savetoplaylist="Save to playlist"
             share="Share"
             notInterested="Not interested"
-            addToQueue="Add to queue"
+            // addToQueue="Add to queue"
           />
         )
       })}

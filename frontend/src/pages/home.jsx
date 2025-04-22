@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import MyContext from "../router/context";
 import Slider from "react-slick";
 import {CustomSlider } from "../components";
 import { blipsIcon, video1, video2, video3, video4 } from "../assets/images";
@@ -69,7 +68,7 @@ const HomePage = () => {
   return (
     <Layout>
       <div className="flex justify-center items-center">
-        <img src={blipsIcon} className="w-[52px]" alt="Blips Icon" />
+        <img src={blipsIcon} className="w-[100px]" alt="Blips Icon" />
       </div>
       {loading ? (
         <div className="flex gap-2 mt-4">
@@ -83,7 +82,7 @@ const HomePage = () => {
           ))}
         </div>
       ) : (
-        <Slider {...settings} className="text-white mt-4 options-slider">
+        <Slider {...settings} className="text-white options-slider">
           {categories.map((item, index) => (
             <div key={index} className="text-center px-2">
               <div

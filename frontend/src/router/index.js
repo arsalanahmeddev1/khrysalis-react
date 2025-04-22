@@ -46,6 +46,15 @@ import WatchPage from "../pages/WatchPage";
 import SettingsPage from "../pages/SettingsPage";
 import Help from "../pages/Help";
 
+// Studio Pages
+import CreateChannel from "../pages/CreateChannel"
+import Dashboard from "../pages/studio/Dashboard"
+import Content from "../pages/studio/Content"
+import Analytics from "../pages/studio/Analytics"
+import Comments from "../pages/studio/Comments"
+import Customization from "../pages/studio/Customization"
+import UploadVideo from "../pages/studio/UploadVideo"
+import UploadShort from "../pages/studio/UploadShort"
 
 const AppRouter = () => {
   const routes = [
@@ -73,7 +82,7 @@ const AppRouter = () => {
     { path: "/channel/content", element: <ChannelContentPage /> },
     { path: "/channel/analytics", element: <ChannelAnalyticsPage /> },
     { path: "/help", element: <Help /> },
-    
+
     {
       path: "/channel/comments/mentions",
       element: <ChannelCommentsMentionPage />,
@@ -98,6 +107,40 @@ const AppRouter = () => {
       path: "/settings/performance&playback",
       element: <PerformanceAndPlaybackPage />,
     },
+
+    // Studio Routes
+    {
+      path: "/create-channel",
+      element: <CreateChannel />,
+    },
+    {
+      path: "/studio/dashboard",
+      element: <Dashboard />,
+    },
+    {
+      path: "/studio/content",
+      element: <Content />,
+    },
+    {
+      path: "/studio/analytics",
+      element: <Analytics />,
+    },
+    {
+      path: "/studio/comments",
+      element: <Comments />,
+    },
+    {
+      path: "/studio/customization",
+      element: <Customization />,
+    },
+    {
+      path: "/studio/upload/video",
+      element: <UploadVideo />,
+    },
+    {
+      path: "/studio/upload/short",
+      element: <UploadShort />,
+    },
   ];
 
   const publicRoutes = [
@@ -106,7 +149,7 @@ const AppRouter = () => {
   ];
 
   const protectedRoutes = [
-  
+
   ];
 
   return (

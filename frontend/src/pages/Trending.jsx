@@ -4,6 +4,7 @@ import TrendingVideoList from "../components/TrendingVideoList";
 import CategoryTabs from "../components/CategoryTabs";
 import { initialTrendingVideos } from "../data";
 import Skeleton from "react-loading-skeleton";
+import InnerBanner from "../components/InnerBanner";
 
 const Trending = () => {
   const [videos, setVideos] = useState([])
@@ -52,6 +53,7 @@ const Trending = () => {
 
   return (
     <Layout title="Trending">
+      <InnerBanner loading={loading} title={"Trending"} description={"Live streams, walkthroughs, reviews, and more from your favorite gaming creators"} />
       <div className="mb-6">
         {loading ? (
           <div className="mb-6">

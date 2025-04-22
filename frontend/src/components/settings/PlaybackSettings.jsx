@@ -84,7 +84,7 @@ const PlaybackSettings = () => {
         </div>
       </SettingsSection>
 
-      <SettingsSection title="Video quality">
+      {/* <SettingsSection title="Video quality">
         <div className="space-y-6">
           <FormSelect
             label="Video quality on mobile networks"
@@ -110,9 +110,9 @@ const PlaybackSettings = () => {
             options={dataUsageOptions}
           />
         </div>
-      </SettingsSection>
+      </SettingsSection> */}
 
-      <SettingsSection title="Playback">
+      {/* <SettingsSection title="Playback">
         <div className="space-y-6">
           <FormSelect
             label="Default playback speed"
@@ -138,7 +138,7 @@ const PlaybackSettings = () => {
             onChange={() => handleToggle("ambientMode")}
           />
         </div>
-      </SettingsSection>
+      </SettingsSection> */}
     </div>
   )
 }

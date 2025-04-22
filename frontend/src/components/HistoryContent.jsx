@@ -42,6 +42,7 @@ const HistoryContent = ({ groupedVideos, onRemoveVideo, searchQuery }) => {
                   onRemove={() => onRemoveVideo(video.id)}
                   removeFromLikedVideos="Remove from history"
                   isHistoryItem={true}
+                  className={"flex-col md:flex-row"}
                 />
               ))}
             </div>

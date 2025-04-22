@@ -18,7 +18,7 @@ const TrendingVideoList = ({ videos }) => {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
       {videos.map((video) => (
         <LikedVideoCard 
         className="flex-col md:flex-col"  
@@ -26,7 +26,7 @@ const TrendingVideoList = ({ videos }) => {
         showCategory={true} 
         trendingStyle={true} 
         thumbnailClassName="md:w-full"
-        addToQueue={"Add to queue"}
+        // addToQueue={"Add to queue"}
         Savetoplaylist={"Save to playlist"}
         notInterested={"not interested"}
         share={"Share"}
